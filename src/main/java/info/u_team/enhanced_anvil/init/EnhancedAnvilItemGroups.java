@@ -5,6 +5,6 @@ import info.u_team.u_team_core.itemgroup.UItemGroup;
 
 public class EnhancedAnvilItemGroups {
 	
-	public static final UItemGroup GROUP = new UItemGroup(EnhancedAnvilMod.MODID, "group", () -> EnhancedAnvilBlocks.ANVIL);
+	public static final UItemGroup GROUP = new UItemGroup(EnhancedAnvilMod.MODID, "group", () -> EnhancedAnvilBlocks.ENHANCED_ANVIL);
 	
 }
