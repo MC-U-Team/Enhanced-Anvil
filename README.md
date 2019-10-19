@@ -1,4 +1,4 @@
-# enhanced-anvil
+# Enhanced-Anvil
 
 [
 ![Curseforge Downloads](http://cf.way2muchnoise.eu/enhanced-anvil.svg)
@@ -8,7 +8,7 @@
 ![Discord](https://img.shields.io/discord/297104769649213441?label=Discord)
 ](https://discordapp.com/invite/QXbWS36)
 
-### This mod adds three new backpacks to the game which enhance your gaming experience.
+### This mod adds a new anvil to the game that remove some enchantment restrictions but is still not overpowered.
 
 - Download on [curseforge](https://www.curseforge.com/minecraft/mc-mods/enhanced-anvil).  
 - Find more information on our [website](https://u-team.info/mods/enhancedanvil).
