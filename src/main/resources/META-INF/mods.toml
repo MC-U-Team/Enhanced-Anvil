@@ -1,0 +1,35 @@
+modLoader="javafml"
+loaderVersion="[28,)"
+issueTrackerURL="https://github.com/MC-U-Team/Enhanced-Anvil/issues"
+displayURL="https://u-team.info/mods/enhancedanvil"
+logoFile="logo.png"
+credits="Team U-Team"
+authors="HyCraftHD"
+
+[[mods]]
+	modId="enhancedanvil"
+	version="${file.jarVersion}"
+	displayName="Enhanced Anvil"
+	updateJSONURL="https://api.u-team.info/update/enhancedanvil.json"
+	description="This mod adds an enhanced anvil."
+	
+	[[dependencies.enhancedanvil]]
+	    modId="forge"
+	    mandatory=true
+	    versionRange="[28.1.20,)"
+	    ordering="NONE"
+	    side="BOTH"
+	
+	[[dependencies.enhancedanvil]]
+	    modId="minecraft"
+	    mandatory=true
+	    versionRange="[1.14.4]"
+	    ordering="NONE"
+	    side="BOTH"
+	    
+	[[dependencies.enhancedanvil]]
+	    modId="uteamcore"
+	    mandatory=true
+	    versionRange="[2.7.3.132,)"
+	    ordering="NONE"
+	    side="BOTH"
