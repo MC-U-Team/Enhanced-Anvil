@@ -1,8 +1,9 @@
 package info.u_team.enhanced_anvil.data.provider;
 
+import static info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks.ENHANCED_ANVIL;
+
 import java.util.function.Consumer;
 
-import info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks;
 import info.u_team.u_team_core.data.CommonRecipesProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.*;
@@ -16,7 +17,7 @@ public class EnhancedAnvilRecipesProvider extends CommonRecipesProvider {
 	
 	@Override
 	protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
-		ShapedRecipeBuilder.shapedRecipe(EnhancedAnvilBlocks.ENHANCED_ANVIL) //
+		ShapedRecipeBuilder.shapedRecipe(ENHANCED_ANVIL) //
 				.patternLine("III") //
 				.patternLine(" A ") //
 				.patternLine("IBI") //

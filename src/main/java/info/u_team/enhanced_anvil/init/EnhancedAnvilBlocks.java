@@ -16,8 +16,8 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 public class EnhancedAnvilBlocks {
 	
 	public static final EnhancedAnvilBlock ENHANCED_ANVIL = new EnhancedAnvilBlock("enhanced_anvil");
-	public static final EnhancedAnvilBlock ENHANCED_CHIPPED_ANVIL = new EnhancedAnvilBlock("chipped_enhanced_anvil");
-	public static final EnhancedAnvilBlock ENHANCED_DAMAGED_ANVIL = new EnhancedAnvilBlock("damaged_enhanced_anvil");
+	public static final EnhancedAnvilBlock CHIPPED_ENHANCED_ANVIL = new EnhancedAnvilBlock("chipped_enhanced_anvil");
+	public static final EnhancedAnvilBlock DAMAGED_ENHANCED_ANVIL = new EnhancedAnvilBlock("damaged_enhanced_anvil");
 	
 	@SubscribeEvent
 	public static void register(Register<Block> event) {

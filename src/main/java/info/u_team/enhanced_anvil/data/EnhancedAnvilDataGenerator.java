@@ -19,6 +19,8 @@ public class EnhancedAnvilDataGenerator {
 			generator.addProvider(new EnhancedAnvilItemTagsProvider(generator)); // Generate item tags
 			
 			generator.addProvider(new EnhancedAnvilRecipesProvider(generator)); // Generate recipe
+			
+			generator.addProvider(new EnhancedAnvilLootTablesProvider(generator)); // Generate loot tables
 		}
 	}
 	

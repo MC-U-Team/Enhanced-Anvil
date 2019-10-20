@@ -1,6 +1,7 @@
 package info.u_team.enhanced_anvil.data.provider;
 
-import info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks;
+import static info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks.*;
+
 import info.u_team.u_team_core.data.CommonBlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.tags.BlockTags;
@@ -13,7 +14,7 @@ public class EnhancedAnvilBlockTagsProvider extends CommonBlockTagsProvider {
 	
 	@Override
 	protected void registerTags() {
-		getBuilder(BlockTags.ANVIL).add(EnhancedAnvilBlocks.ENHANCED_ANVIL, EnhancedAnvilBlocks.ENHANCED_CHIPPED_ANVIL, EnhancedAnvilBlocks.ENHANCED_DAMAGED_ANVIL);
+		getBuilder(BlockTags.ANVIL).add(ENHANCED_ANVIL, CHIPPED_ENHANCED_ANVIL, DAMAGED_ENHANCED_ANVIL);
 	}
 	
 }
