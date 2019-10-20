@@ -14,10 +14,6 @@ import net.minecraft.world.World;
 
 public class EnhancedAnvilFallingBlockEntity extends FallingBlockEntity {
 	
-	public EnhancedAnvilFallingBlockEntity(EntityType<? extends FallingBlockEntity> type, World world) {
-		super(type, world);
-	}
-	
 	public EnhancedAnvilFallingBlockEntity(World world, double x, double y, double z, BlockState fallingBlockState) {
 		super(world, x, y, z, fallingBlockState);
 	}

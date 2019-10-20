@@ -102,7 +102,7 @@ public class EnhancedAnvilContainer extends RepairContainer {
 			boolean flag = false;
 			
 			if (!itemstack2.isEmpty()) {
-				if (!net.minecraftforge.common.ForgeHooks.onAnvilChange(this, itemstack, itemstack2, outputSlot, repairedItemName, j))
+				if (!ForgeHooks.onAnvilChange(this, itemstack, itemstack2, outputSlot, repairedItemName, j))
 					return;
 				flag = itemstack2.getItem() == Items.ENCHANTED_BOOK && !EnchantedBookItem.getEnchantments(itemstack2).isEmpty();
 				if (itemstack1.isDamageable() && itemstack1.getItem().getIsRepairable(itemstack, itemstack2)) {
