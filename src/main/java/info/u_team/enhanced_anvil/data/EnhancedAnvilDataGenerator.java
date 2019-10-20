@@ -17,6 +17,8 @@ public class EnhancedAnvilDataGenerator {
 		if (event.includeServer()) {
 			generator.addProvider(new EnhancedAnvilBlockTagsProvider(generator)); // Generate block tags
 			generator.addProvider(new EnhancedAnvilItemTagsProvider(generator)); // Generate item tags
+			
+			generator.addProvider(new EnhancedAnvilRecipesProvider(generator)); // Generate recipe
 		}
 	}
 	

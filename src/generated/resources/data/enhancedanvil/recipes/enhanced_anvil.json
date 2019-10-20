@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"III",
+		" A ",
+		"IBI"
+	],
+	"key": {
+		"I": {
+			"tag": "forge:ingots/iron"
+		},
+		"A": {
+			"item": "minecraft:anvil"
+		},
+		"B": {
+			"tag": "forge:storage_blocks/iron"
+		}
+	},
+	"result": {
+		"item": "enhancedanvil:enhanced_anvil"
+	}
+}
