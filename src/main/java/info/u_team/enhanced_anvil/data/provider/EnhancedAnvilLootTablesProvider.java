@@ -5,15 +5,15 @@ import static info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks.*;
 import java.io.IOException;
 import java.util.function.BiConsumer;
 
-import info.u_team.u_team_core.data.CommonLootTablesProvider;
-import net.minecraft.data.*;
+import info.u_team.u_team_core.data.*;
+import net.minecraft.data.DirectoryCache;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.*;
 
 public class EnhancedAnvilLootTablesProvider extends CommonLootTablesProvider {
 	
-	public EnhancedAnvilLootTablesProvider(DataGenerator generator) {
-		super("Loot-Table", generator);
+	public EnhancedAnvilLootTablesProvider(GenerationData data) {
+		super(data);
 	}
 	
 	@Override

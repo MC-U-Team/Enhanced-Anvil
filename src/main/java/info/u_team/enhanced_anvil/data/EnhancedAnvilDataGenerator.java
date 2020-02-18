@@ -2,7 +2,7 @@ package info.u_team.enhanced_anvil.data;
 
 import info.u_team.enhanced_anvil.EnhancedAnvilMod;
 import info.u_team.enhanced_anvil.data.provider.*;
-import net.minecraft.data.DataGenerator;
+import info.u_team.u_team_core.data.GenerationData;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -13,15 +13,13 @@ public class EnhancedAnvilDataGenerator {
 	
 	@SubscribeEvent
 	public static void data(GatherDataEvent event) {
-		final DataGenerator generator = event.getGenerator();
+		final GenerationData data = new GenerationData(EnhancedAnvilMod.MODID, event);
 		if (event.includeServer()) {
-			generator.addProvider(new EnhancedAnvilBlockTagsProvider(generator)); // Generate block tags
-			generator.addProvider(new EnhancedAnvilItemTagsProvider(generator)); // Generate item tags
+			data.addProvider(EnhancedAnvilBlockTagsProvider::new);
+			data.addProvider(EnhancedAnvilItemTagsProvider::new);
 			
-			generator.addProvider(new EnhancedAnvilRecipesProvider(generator)); // Generate recipe
-			
-			generator.addProvider(new EnhancedAnvilLootTablesProvider(generator)); // Generate loot tables
+			data.addProvider(EnhancedAnvilRecipesProvider::new);
+			data.addProvider(EnhancedAnvilLootTablesProvider::new);
 		}
 	}
-	
 }

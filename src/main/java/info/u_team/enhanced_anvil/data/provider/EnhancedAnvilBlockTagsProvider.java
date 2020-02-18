@@ -2,14 +2,13 @@ package info.u_team.enhanced_anvil.data.provider;
 
 import static info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks.*;
 
-import info.u_team.u_team_core.data.CommonBlockTagsProvider;
-import net.minecraft.data.DataGenerator;
+import info.u_team.u_team_core.data.*;
 import net.minecraft.tags.BlockTags;
 
 public class EnhancedAnvilBlockTagsProvider extends CommonBlockTagsProvider {
 	
-	public EnhancedAnvilBlockTagsProvider(DataGenerator generator) {
-		super("Block-Tags", generator);
+	public EnhancedAnvilBlockTagsProvider(GenerationData data) {
+		super(data);
 	}
 	
 	@Override
