@@ -1,5 +1,8 @@
 package info.u_team.enhanced_anvil.block;
 
+import java.util.Optional;
+import java.util.function.BiFunction;
+
 import info.u_team.enhanced_anvil.container.EnhancedAnvilContainer;
 import info.u_team.enhanced_anvil.entity.EnhancedAnvilFallingBlockEntity;
 import info.u_team.enhanced_anvil.init.*;
@@ -22,7 +25,13 @@ public class EnhancedAnvilBlock extends UAnvilBlock {
 	
 	@Override
 	public INamedContainerProvider getContainer(BlockState state, World world, BlockPos pos) {
-		return new SimpleNamedContainerProvider((id, playerInventory, player) -> new EnhancedAnvilContainer(id, playerInventory, IWorldPosCallable.of(world, pos)), NAME);
+		return new SimpleNamedContainerProvider((id, playerInventory, player) -> new EnhancedAnvilContainer(id, playerInventory, new IWorldPosCallable() {
+			
+			@Override
+			public <T> Optional<T> apply(BiFunction<World, BlockPos, T> function) {
+				return Optional.ofNullable(function.apply(world, pos));
+			}
+		}), NAME);
 	}
 	
 	public BlockState damageAnvil(BlockState state) {
