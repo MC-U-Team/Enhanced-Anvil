@@ -19,7 +19,7 @@ public class EnhancedAnvilScreen extends AnvilScreen {
 		GlStateManager.disableLighting();
 		GlStateManager.disableBlend();
 		font.drawString(title.getFormattedText(), 60, 6, 0x404040);
-		final int cost = container.func_216976_f();
+		final int cost = container.getMaximumCost();
 		if (cost > 0 && container.getSlot(2).getHasStack()) {
 			final String costString = I18n.format("container.repair.cost", cost);
 			int posX = xSize - 8 - font.getStringWidth(costString) - 2;
