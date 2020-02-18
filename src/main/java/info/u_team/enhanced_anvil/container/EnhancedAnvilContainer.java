@@ -209,7 +209,6 @@ public class EnhancedAnvilContainer extends RepairContainer {
 					}
 				}
 			}
-			
 			if (StringUtils.isBlank(repairedItemName)) {
 				if (itemstack.hasDisplayName()) {
 					k = 1;
