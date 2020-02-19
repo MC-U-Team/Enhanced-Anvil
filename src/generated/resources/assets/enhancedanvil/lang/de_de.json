@@ -1,7 +1,7 @@
 {
-	"block.enhancedanvil.chipped_enhanced_anvil": "Angeschlagener verbesserter Amboss",
-	"block.enhancedanvil.damaged_enhanced_anvil": "Stark beschädigter verbesserter Amboss",
+	"block.enhancedanvil.chipped_enhanced_anvil": "Angeschlagener Verbesserter Amboss",
+	"block.enhancedanvil.damaged_enhanced_anvil": "Beschädigter Verbesserter Amboss",
 	"block.enhancedanvil.enhanced_anvil": "Verbesserter Amboss",
-	"container.enhancedanvil.enhanved_anvil": "Verbesserte Reparatur",
+	"container.enhancedanvil.enhanved_anvil": "Bessere Reparatur",
 	"itemGroup.enhancedanvil.group": "Verbesserter Amboss"
 }
