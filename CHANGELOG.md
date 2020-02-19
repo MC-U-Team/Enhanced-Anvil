@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.14.4-1.0.0.2] - 2020-02-20
+## [1.14.4-1.0.0.2] - 2020-02-19
 ### Changed
  - Fixed [#1](https://github.com/MC-U-Team/Enhanced-Anvil/issues/1)
 
