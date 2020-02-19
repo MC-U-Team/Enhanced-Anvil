@@ -1,6 +1,0 @@
-{
-	"parent": "enhancedanvil:block/enhanced_anvil",
-	"textures": {
-		"top": "enhancedanvil:block/chipped_anvil_top"
-	}
-}

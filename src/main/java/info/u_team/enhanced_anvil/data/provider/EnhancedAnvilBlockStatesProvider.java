@@ -21,8 +21,8 @@ public class EnhancedAnvilBlockStatesProvider extends CommonBlockStatesProvider 
 	
 	private void allAnvilBlock(String name, Block base, Block chipped, Block damaged) {
 		baseAnvilBlock(base, getBlockPath(name), getBlockPath(name + "_top"));
-		variantAnvilBlock(chipped, getBlockPath(getPath(chipped)), getBlockPath("chipped_" + name + "_top"));
-		variantAnvilBlock(damaged, getBlockPath(getPath(damaged)), getBlockPath("damaged_" + name + "_top"));
+		variantAnvilBlock(chipped, getBlockPath(getPath(base)), getBlockPath("chipped_" + name + "_top"));
+		variantAnvilBlock(damaged, getBlockPath(getPath(base)), getBlockPath("damaged_" + name + "_top"));
 	}
 	
 	private void variantAnvilBlock(Block block, ResourceLocation base, ResourceLocation top) {
