@@ -1,6 +1,6 @@
 package info.u_team.enhanced_anvil.block;
 
-import java.util.Optional;
+import java.util.*;
 import java.util.function.BiFunction;
 
 import info.u_team.enhanced_anvil.container.EnhancedAnvilContainer;
@@ -14,6 +14,7 @@ import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 public class EnhancedAnvilBlock extends UAnvilBlock {
 	
@@ -44,7 +45,7 @@ public class EnhancedAnvilBlock extends UAnvilBlock {
 	}
 	
 	@Override
-	protected void checkFallable(World world, BlockPos pos) {
+	public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
 		if (world.isAirBlock(pos.down()) || canFallThrough(world.getBlockState(pos.down())) && pos.getY() >= 0) {
 			if (!world.isRemote) {
 				final FallingBlockEntity entity = new EnhancedAnvilFallingBlockEntity(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, world.getBlockState(pos));

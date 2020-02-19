@@ -19,7 +19,7 @@ public class EnhancedAnvilFallingBlockEntity extends FallingBlockEntity {
 	}
 	
 	@Override
-	public void fall(float distance, float damageMultiplier) {
+	public boolean onLivingFall(float distance, float damageMultiplier) {
 		if (hurtEntities) {
 			final int fallingHeightAttribute = MathHelper.ceil(distance - 1.0F);
 			if (fallingHeightAttribute > 0) {
@@ -41,5 +41,7 @@ public class EnhancedAnvilFallingBlockEntity extends FallingBlockEntity {
 				}
 			}
 		}
+		return false;
 	}
+	
 }
