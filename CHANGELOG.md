@@ -1,10 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.14.4-1.0.0.2] - 2020-02-20
-### Chaged
- - Fixed [#1](https://github.com/MC-U-Team/Enhanced-Anvil/issues/1)
-
-## [1.14.4-0.9.0.1] - 2019-10-20
-### Added
- - Added anvil with basic functionality
+## [1.15.2-1.0.1.3] - 2020-02-19
+### Changed
+ - Port to 1.15.2
+ - Generate all model files now
+ - Add german translation
+ - Sign jar from now on
