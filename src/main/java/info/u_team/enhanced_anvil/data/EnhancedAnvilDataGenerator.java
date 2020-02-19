@@ -14,6 +14,9 @@ public class EnhancedAnvilDataGenerator {
 	@SubscribeEvent
 	public static void data(GatherDataEvent event) {
 		final GenerationData data = new GenerationData(EnhancedAnvilMod.MODID, event);
+		if (event.includeClient()) {
+			data.addProvider(EnhancedAnvilLanguagesProvider::new);
+		}
 		if (event.includeServer()) {
 			data.addProvider(EnhancedAnvilBlockTagsProvider::new);
 			data.addProvider(EnhancedAnvilItemTagsProvider::new);
