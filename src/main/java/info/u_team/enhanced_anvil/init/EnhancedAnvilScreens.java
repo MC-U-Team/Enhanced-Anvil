@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @EventBusSubscriber(modid = EnhancedAnvilMod.MODID, bus = Bus.MOD, value = Dist.CLIENT)
-public class EnhancedAnvilGuis {
+public class EnhancedAnvilScreens {
 	
 	@SubscribeEvent
 	public static void register(FMLClientSetupEvent event) {
