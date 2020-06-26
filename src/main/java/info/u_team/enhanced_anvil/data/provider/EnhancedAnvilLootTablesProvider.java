@@ -16,9 +16,9 @@ public class EnhancedAnvilLootTablesProvider extends CommonLootTablesProvider {
 	
 	@Override
 	protected void registerLootTables(BiConsumer<ResourceLocation, LootTable> consumer) {
-		registerBlock(ENHANCED_ANVIL, addBasicBlockLootTable(ENHANCED_ANVIL), consumer);
-		registerBlock(CHIPPED_ENHANCED_ANVIL, addBasicBlockLootTable(CHIPPED_ENHANCED_ANVIL), consumer);
-		registerBlock(DAMAGED_ENHANCED_ANVIL, addBasicBlockLootTable(DAMAGED_ENHANCED_ANVIL), consumer);
+		registerBlock(ENHANCED_ANVIL, addBasicBlockLootTable(ENHANCED_ANVIL.get()), consumer);
+		registerBlock(CHIPPED_ENHANCED_ANVIL, addBasicBlockLootTable(CHIPPED_ENHANCED_ANVIL.get()), consumer);
+		registerBlock(DAMAGED_ENHANCED_ANVIL, addBasicBlockLootTable(DAMAGED_ENHANCED_ANVIL.get()), consumer);
 	}
 	
 }

@@ -17,16 +17,16 @@ public class EnhancedAnvilLanguagesProvider extends CommonLanguagesProvider {
 		
 		// English
 		add(GROUP, "Enhanced Anvil");
-		add(ENHANCED_ANVIL, "Enhanced Anvil");
-		add(CHIPPED_ENHANCED_ANVIL, "Chipped Enhanced Anvil");
-		add(DAMAGED_ENHANCED_ANVIL, "Damaged Enhanced Anvil");
+		addBlock(ENHANCED_ANVIL, "Enhanced Anvil");
+		addBlock(CHIPPED_ENHANCED_ANVIL, "Chipped Enhanced Anvil");
+		addBlock(DAMAGED_ENHANCED_ANVIL, "Damaged Enhanced Anvil");
 		add(container, "Enhanced Repair");
 		
 		// German
 		add("de_de", GROUP, "Verbesserter Amboss");
-		add("de_de", ENHANCED_ANVIL, "Verbesserter Amboss");
-		add("de_de", CHIPPED_ENHANCED_ANVIL, "Angeschlagener Verbesserter Amboss");
-		add("de_de", DAMAGED_ENHANCED_ANVIL, "Beschädigter Verbesserter Amboss");
+		addBlock("de_de", ENHANCED_ANVIL, "Verbesserter Amboss");
+		addBlock("de_de", CHIPPED_ENHANCED_ANVIL, "Angeschlagener Verbesserter Amboss");
+		addBlock("de_de", DAMAGED_ENHANCED_ANVIL, "Beschädigter Verbesserter Amboss");
 		add("de_de", container, "Bessere Reparatur");
 	}
 	

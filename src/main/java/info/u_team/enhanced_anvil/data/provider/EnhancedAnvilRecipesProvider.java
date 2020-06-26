@@ -17,7 +17,7 @@ public class EnhancedAnvilRecipesProvider extends CommonRecipesProvider {
 	
 	@Override
 	protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
-		ShapedRecipeBuilder.shapedRecipe(ENHANCED_ANVIL) //
+		ShapedRecipeBuilder.shapedRecipe(ENHANCED_ANVIL.get()) //
 				.patternLine("III") //
 				.patternLine(" A ") //
 				.patternLine("IBI") //

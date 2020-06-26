@@ -12,9 +12,9 @@ public class EnhancedAnvilItemModelsProvider extends CommonItemModelsProvider {
 	
 	@Override
 	protected void registerModels() {
-		simpleBlock(ENHANCED_ANVIL);
-		simpleBlock(CHIPPED_ENHANCED_ANVIL);
-		simpleBlock(DAMAGED_ENHANCED_ANVIL);
+		simpleBlock(ENHANCED_ANVIL.get());
+		simpleBlock(CHIPPED_ENHANCED_ANVIL.get());
+		simpleBlock(DAMAGED_ENHANCED_ANVIL.get());
 	}
 	
 }

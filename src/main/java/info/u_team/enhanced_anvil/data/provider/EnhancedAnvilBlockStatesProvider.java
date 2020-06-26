@@ -16,7 +16,7 @@ public class EnhancedAnvilBlockStatesProvider extends CommonBlockStatesProvider 
 	
 	@Override
 	protected void registerStatesAndModels() {
-		allAnvilBlock("anvil", ENHANCED_ANVIL, CHIPPED_ENHANCED_ANVIL, DAMAGED_ENHANCED_ANVIL);
+		allAnvilBlock("anvil", ENHANCED_ANVIL.get(), CHIPPED_ENHANCED_ANVIL.get(), DAMAGED_ENHANCED_ANVIL.get());
 	}
 	
 	private void allAnvilBlock(String name, Block base, Block chipped, Block damaged) {

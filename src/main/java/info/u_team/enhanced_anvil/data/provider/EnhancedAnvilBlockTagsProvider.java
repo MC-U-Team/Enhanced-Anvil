@@ -13,7 +13,7 @@ public class EnhancedAnvilBlockTagsProvider extends CommonBlockTagsProvider {
 	
 	@Override
 	protected void registerTags() {
-		getBuilder(BlockTags.ANVIL).add(ENHANCED_ANVIL, CHIPPED_ENHANCED_ANVIL, DAMAGED_ENHANCED_ANVIL);
+		getBuilder(BlockTags.ANVIL).add(ENHANCED_ANVIL.get(), CHIPPED_ENHANCED_ANVIL.get(), DAMAGED_ENHANCED_ANVIL.get());
 	}
 	
 }
