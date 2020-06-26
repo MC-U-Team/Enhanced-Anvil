@@ -37,10 +37,10 @@ public class EnhancedAnvilBlock extends UAnvilBlock {
 	
 	public BlockState damageAnvil(BlockState state) {
 		final Block block = state.getBlock();
-		if (block == EnhancedAnvilBlocks.ENHANCED_ANVIL) {
-			return EnhancedAnvilBlocks.CHIPPED_ENHANCED_ANVIL.getDefaultState().with(FACING, state.get(FACING));
+		if (block == EnhancedAnvilBlocks.ENHANCED_ANVIL.get()) {
+			return EnhancedAnvilBlocks.CHIPPED_ENHANCED_ANVIL.get().getDefaultState().with(FACING, state.get(FACING));
 		} else {
-			return block == EnhancedAnvilBlocks.CHIPPED_ENHANCED_ANVIL ? EnhancedAnvilBlocks.DAMAGED_ENHANCED_ANVIL.getDefaultState().with(FACING, state.get(FACING)) : null;
+			return block == EnhancedAnvilBlocks.CHIPPED_ENHANCED_ANVIL.get() ? EnhancedAnvilBlocks.DAMAGED_ENHANCED_ANVIL.get().getDefaultState().with(FACING, state.get(FACING)) : null;
 		}
 	}
 	

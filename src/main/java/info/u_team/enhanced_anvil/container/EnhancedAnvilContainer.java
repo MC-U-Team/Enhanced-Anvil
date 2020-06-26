@@ -26,7 +26,7 @@ public class EnhancedAnvilContainer extends RepairContainer {
 	// Server
 	public EnhancedAnvilContainer(int id, PlayerInventory playerInventory, IWorldPosCallable posCallable) {
 		super(id, playerInventory, posCallable);
-		containerType = EnhancedAnvilContainerTypes.ENHANCED_ANVIL; // Force set this container type
+		containerType = EnhancedAnvilContainerTypes.ENHANCED_ANVIL.get(); // Force set this container type
 		final Slot replaceOutputSlot = new Slot(outputSlot, 2, 134, 47) { // Replace output slot with our slot
 			
 			@Override
