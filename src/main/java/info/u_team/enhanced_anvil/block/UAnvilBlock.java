@@ -1,40 +1,32 @@
 package info.u_team.enhanced_anvil.block;
 
-import info.u_team.u_team_core.api.registry.IUBlockRegistryType;
+import info.u_team.u_team_core.api.registry.IBlockItemProvider;
 import net.minecraft.block.AnvilBlock;
 import net.minecraft.item.*;
 
-public class UAnvilBlock extends AnvilBlock implements IUBlockRegistryType {
-	
-	protected final String name;
+public class UAnvilBlock extends AnvilBlock implements IBlockItemProvider {
 	
 	protected final BlockItem blockItem;
 	
-	public UAnvilBlock(String name, Properties properties) {
-		this(name, null, properties);
+	public UAnvilBlock(Properties properties) {
+		this(null, properties);
 	}
 	
-	public UAnvilBlock(String name, ItemGroup group, Properties properties) {
-		this(name, group, properties, null);
+	public UAnvilBlock(ItemGroup group, Properties properties) {
+		this(group, properties, null);
 	}
 	
-	public UAnvilBlock(String name, Properties properties, Item.Properties blockItemProperties) {
-		this(name, null, properties, blockItemProperties);
+	public UAnvilBlock(Properties properties, Item.Properties blockItemProperties) {
+		this(null, properties, blockItemProperties);
 	}
 	
-	public UAnvilBlock(String name, ItemGroup group, Properties properties, Item.Properties blockItemProperties) {
+	public UAnvilBlock(ItemGroup group, Properties properties, Item.Properties blockItemProperties) {
 		super(properties);
-		this.name = name;
 		blockItem = createBlockItem(blockItemProperties == null ? new Item.Properties().group(group) : group == null ? blockItemProperties : blockItemProperties.group(group));
 	}
 	
 	protected BlockItem createBlockItem(Item.Properties blockItemProperties) {
 		return new BlockItem(this, blockItemProperties);
-	}
-	
-	@Override
-	public String getEntryName() {
-		return name;
 	}
 	
 	@Override

@@ -20,8 +20,8 @@ public class EnhancedAnvilBlock extends UAnvilBlock {
 	
 	private static final TranslationTextComponent NAME = new TranslationTextComponent("container.enhancedanvil.enhanved_anvil");
 	
-	public EnhancedAnvilBlock(String name) {
-		super(name, EnhancedAnvilItemGroups.GROUP, Properties.create(Material.ANVIL, MaterialColor.IRON).hardnessAndResistance(5.0F, 1200.0F).sound(SoundType.ANVIL));
+	public EnhancedAnvilBlock() {
+		super(EnhancedAnvilItemGroups.GROUP, Properties.create(Material.ANVIL, MaterialColor.IRON).hardnessAndResistance(5.0F, 1200.0F).sound(SoundType.ANVIL));
 	}
 	
 	@Override
