@@ -15,7 +15,7 @@ public class EnhancedAnvilScreens {
 	@SubscribeEvent
 	public static void register(FMLClientSetupEvent event) {
 		MainThreadWorker.run(() -> {
-			ClientRegistry.registryScreen(EnhancedAnvilContainerTypes.ENHANCED_ANVIL, EnhancedAnvilScreen::new);
+			ClientRegistry.registerScreen(EnhancedAnvilContainerTypes.ENHANCED_ANVIL, EnhancedAnvilScreen::new);
 		});
 	}
 	
