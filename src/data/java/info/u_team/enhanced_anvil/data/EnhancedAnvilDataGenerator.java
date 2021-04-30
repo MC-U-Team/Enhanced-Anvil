@@ -1,7 +1,13 @@
 package info.u_team.enhanced_anvil.data;
 
 import info.u_team.enhanced_anvil.EnhancedAnvilMod;
-import info.u_team.enhanced_anvil.data.provider.*;
+import info.u_team.enhanced_anvil.data.provider.EnhancedAnvilBlockStatesProvider;
+import info.u_team.enhanced_anvil.data.provider.EnhancedAnvilBlockTagsProvider;
+import info.u_team.enhanced_anvil.data.provider.EnhancedAnvilItemModelsProvider;
+import info.u_team.enhanced_anvil.data.provider.EnhancedAnvilItemTagsProvider;
+import info.u_team.enhanced_anvil.data.provider.EnhancedAnvilLanguagesProvider;
+import info.u_team.enhanced_anvil.data.provider.EnhancedAnvilLootTablesProvider;
+import info.u_team.enhanced_anvil.data.provider.EnhancedAnvilRecipesProvider;
 import info.u_team.u_team_core.data.GenerationData;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;

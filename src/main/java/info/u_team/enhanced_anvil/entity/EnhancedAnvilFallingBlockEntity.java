@@ -6,7 +6,7 @@ import com.google.common.collect.Lists;
 
 import info.u_team.enhanced_anvil.block.EnhancedAnvilBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.FallingBlockEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;

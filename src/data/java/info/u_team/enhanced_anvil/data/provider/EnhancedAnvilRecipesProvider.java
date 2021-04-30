@@ -4,9 +4,11 @@ import static info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks.ENHANCED_ANVIL
 
 import java.util.function.Consumer;
 
-import info.u_team.u_team_core.data.*;
+import info.u_team.u_team_core.data.CommonRecipesProvider;
+import info.u_team.u_team_core.data.GenerationData;
 import net.minecraft.block.Blocks;
-import net.minecraft.data.*;
+import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraftforge.common.Tags;
 
 public class EnhancedAnvilRecipesProvider extends CommonRecipesProvider {

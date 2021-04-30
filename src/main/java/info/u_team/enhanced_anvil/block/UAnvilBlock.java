@@ -2,7 +2,9 @@ package info.u_team.enhanced_anvil.block;
 
 import info.u_team.u_team_core.api.registry.IBlockItemProvider;
 import net.minecraft.block.AnvilBlock;
-import net.minecraft.item.*;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 
 public class UAnvilBlock extends AnvilBlock implements IBlockItemProvider {
 	

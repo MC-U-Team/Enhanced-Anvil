@@ -1,15 +1,21 @@
 package info.u_team.enhanced_anvil.block;
 
-import java.util.*;
+import java.util.Optional;
+import java.util.Random;
 import java.util.function.BiFunction;
 
 import info.u_team.enhanced_anvil.container.EnhancedAnvilContainer;
 import info.u_team.enhanced_anvil.entity.EnhancedAnvilFallingBlockEntity;
-import info.u_team.enhanced_anvil.init.*;
-import net.minecraft.block.*;
-import net.minecraft.block.material.*;
+import info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks;
+import info.u_team.enhanced_anvil.init.EnhancedAnvilItemGroups;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.item.FallingBlockEntity;
-import net.minecraft.inventory.container.*;
+import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TranslationTextComponent;

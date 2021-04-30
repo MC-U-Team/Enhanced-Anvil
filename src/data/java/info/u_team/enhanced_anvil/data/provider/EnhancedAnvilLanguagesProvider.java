@@ -1,9 +1,12 @@
 package info.u_team.enhanced_anvil.data.provider;
 
+import static info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks.CHIPPED_ENHANCED_ANVIL;
+import static info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks.DAMAGED_ENHANCED_ANVIL;
+import static info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks.ENHANCED_ANVIL;
 import static info.u_team.enhanced_anvil.init.EnhancedAnvilItemGroups.GROUP;
-import static info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks.*;
 
-import info.u_team.u_team_core.data.*;
+import info.u_team.u_team_core.data.CommonLanguagesProvider;
+import info.u_team.u_team_core.data.GenerationData;
 
 public class EnhancedAnvilLanguagesProvider extends CommonLanguagesProvider {
 	
