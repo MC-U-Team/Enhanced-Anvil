@@ -1,8 +1,6 @@
 package info.u_team.enhanced_anvil;
 
-import info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks;
-import info.u_team.enhanced_anvil.init.EnhancedAnvilContainerTypes;
-import info.u_team.u_team_core.util.registry.BusRegister;
+import info.u_team.u_team_core.util.annotation.AnnotationManager;
 import info.u_team.u_team_core.util.verify.JarSignVerifier;
 import net.minecraftforge.fml.common.Mod;
 
@@ -13,12 +11,8 @@ public class EnhancedAnvilMod {
 	
 	public EnhancedAnvilMod() {
 		JarSignVerifier.checkSigned(MODID);
-		register();
-	}
-	
-	private void register() {
-		BusRegister.registerMod(EnhancedAnvilBlocks::register);
-		BusRegister.registerMod(EnhancedAnvilContainerTypes::register);
+		
+		AnnotationManager.callAnnotations(MODID);
 	}
 	
 }
