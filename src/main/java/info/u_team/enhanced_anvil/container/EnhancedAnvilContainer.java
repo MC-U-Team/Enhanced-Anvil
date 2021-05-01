@@ -32,7 +32,7 @@ public class EnhancedAnvilContainer extends RepairContainer {
 	public EnhancedAnvilContainer(int id, PlayerInventory playerInventory, IWorldPosCallable posCallable) {
 		super(id, playerInventory, posCallable);
 		containerType = EnhancedAnvilContainerTypes.ENHANCED_ANVIL.get(); // Force set this container type
-		final Slot replaceOutputSlot = new Slot(outputSlot, 2, 134, 47) { // Replace output slot with our slot
+		final Slot replacefield_234642_c_ = new Slot(field_234642_c_, 2, 134, 47) { // Replace output slot with our slot
 			
 			@Override
 			public boolean isItemValid(ItemStack stack) {
@@ -50,19 +50,19 @@ public class EnhancedAnvilContainer extends RepairContainer {
 					player.addExperienceLevel(-maximumCost.get());
 				}
 				
-				final float breakChance = ForgeHooks.onAnvilRepair(player, stack, inputSlots.getStackInSlot(0), inputSlots.getStackInSlot(1));
+				final float breakChance = ForgeHooks.onAnvilRepair(player, stack, field_234643_d_.getStackInSlot(0), field_234643_d_.getStackInSlot(1));
 				
-				inputSlots.setInventorySlotContents(0, ItemStack.EMPTY);
+				field_234643_d_.setInventorySlotContents(0, ItemStack.EMPTY);
 				if (materialCost > 0) {
-					final ItemStack materialStack = inputSlots.getStackInSlot(1);
+					final ItemStack materialStack = field_234643_d_.getStackInSlot(1);
 					if (!materialStack.isEmpty() && materialStack.getCount() > materialCost) {
 						materialStack.shrink(materialCost);
-						inputSlots.setInventorySlotContents(1, materialStack);
+						field_234643_d_.setInventorySlotContents(1, materialStack);
 					} else {
-						inputSlots.setInventorySlotContents(1, ItemStack.EMPTY);
+						field_234643_d_.setInventorySlotContents(1, ItemStack.EMPTY);
 					}
 				} else {
-					inputSlots.setInventorySlotContents(1, ItemStack.EMPTY);
+					field_234643_d_.setInventorySlotContents(1, ItemStack.EMPTY);
 				}
 				
 				maximumCost.set(0);
@@ -84,36 +84,36 @@ public class EnhancedAnvilContainer extends RepairContainer {
 				return stack;
 			}
 		};
-		replaceOutputSlot.slotNumber = 2;
-		inventorySlots.set(2, replaceOutputSlot);
+		replacefield_234642_c_.slotNumber = 2;
+		inventorySlots.set(2, replacefield_234642_c_);
 	}
 	
 	@Override
 	public void updateRepairOutput() {
-		final ItemStack itemstack = inputSlots.getStackInSlot(0);
+		final ItemStack itemstack = field_234643_d_.getStackInSlot(0);
 		maximumCost.set(1);
 		int i = 0;
 		int j = 0;
 		int k = 0;
 		if (itemstack.isEmpty()) {
-			outputSlot.setInventorySlotContents(0, ItemStack.EMPTY);
+			field_234642_c_.setInventorySlotContents(0, ItemStack.EMPTY);
 			maximumCost.set(0);
 		} else {
 			ItemStack itemstack1 = itemstack.copy();
-			final ItemStack itemstack2 = inputSlots.getStackInSlot(1);
+			final ItemStack itemstack2 = field_234643_d_.getStackInSlot(1);
 			final Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(itemstack1);
 			j = j + itemstack.getRepairCost() + (itemstack2.isEmpty() ? 0 : itemstack2.getRepairCost());
 			materialCost = 0;
 			boolean flag = false;
 			
 			if (!itemstack2.isEmpty()) {
-				if (!ForgeHooks.onAnvilChange(this, itemstack, itemstack2, outputSlot, repairedItemName, j))
+				if (!ForgeHooks.onAnvilChange(this, itemstack, itemstack2, field_234642_c_, repairedItemName, j, field_234645_f_))
 					return;
 				flag = itemstack2.getItem() == Items.ENCHANTED_BOOK && !EnchantedBookItem.getEnchantments(itemstack2).isEmpty();
 				if (itemstack1.isDamageable() && itemstack1.getItem().getIsRepairable(itemstack, itemstack2)) {
 					int l2 = Math.min(itemstack1.getDamage(), itemstack1.getMaxDamage() / 4);
 					if (l2 <= 0) {
-						outputSlot.setInventorySlotContents(0, ItemStack.EMPTY);
+						field_234642_c_.setInventorySlotContents(0, ItemStack.EMPTY);
 						maximumCost.set(0);
 						return;
 					}
@@ -129,7 +129,7 @@ public class EnhancedAnvilContainer extends RepairContainer {
 					materialCost = i3;
 				} else {
 					if (!flag && (itemstack1.getItem() != itemstack2.getItem() || !itemstack1.isDamageable())) {
-						outputSlot.setInventorySlotContents(0, ItemStack.EMPTY);
+						field_234642_c_.setInventorySlotContents(0, ItemStack.EMPTY);
 						maximumCost.set(0);
 						return;
 					}
@@ -160,7 +160,7 @@ public class EnhancedAnvilContainer extends RepairContainer {
 							int j2 = map1.get(enchantment1);
 							j2 = i2 == j2 ? j2 + 1 : Math.max(j2, i2);
 							boolean flag1 = enchantment1.canApply(itemstack);
-							if (player.abilities.isCreativeMode || itemstack.getItem() == Items.ENCHANTED_BOOK) {
+							if (field_234645_f_.abilities.isCreativeMode || itemstack.getItem() == Items.ENCHANTED_BOOK) {
 								flag1 = true;
 							}
 							
@@ -208,7 +208,7 @@ public class EnhancedAnvilContainer extends RepairContainer {
 					}
 					
 					if (flag3 && !flag2) {
-						outputSlot.setInventorySlotContents(0, ItemStack.EMPTY);
+						field_234642_c_.setInventorySlotContents(0, ItemStack.EMPTY);
 						maximumCost.set(0);
 						return;
 					}
@@ -250,7 +250,7 @@ public class EnhancedAnvilContainer extends RepairContainer {
 				itemstack1.setRepairCost(k2);
 				EnchantmentHelper.setEnchantments(map, itemstack1);
 			}
-			outputSlot.setInventorySlotContents(0, itemstack1);
+			field_234642_c_.setInventorySlotContents(0, itemstack1);
 			detectAndSendChanges();
 		}
 	}

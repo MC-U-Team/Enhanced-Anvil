@@ -1,5 +1,6 @@
 package info.u_team.enhanced_anvil.screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.gui.screen.inventory.AnvilScreen;
@@ -15,7 +16,7 @@ public class EnhancedAnvilScreen extends AnvilScreen {
 	}
 	
 	@Override
-	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+	protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int mouseX, int mouseY) {
 		RenderSystem.disableBlend();
 		font.drawString(title.getFormattedText(), 60, 6, 0x404040);
 		final int cost = container.getMaximumCost();
