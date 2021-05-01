@@ -6,6 +6,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.inventory.AnvilScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.RepairContainer;
+import net.minecraft.inventory.container.Slot;
+import net.minecraft.network.play.client.CRenameItemPacket;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -13,6 +15,28 @@ public class EnhancedAnvilScreen extends AnvilScreen {
 	
 	public EnhancedAnvilScreen(RepairContainer container, PlayerInventory plazerInventory, ITextComponent title) {
 		super(container, plazerInventory, title);
+	}
+	
+	@Override
+	protected void initFields() {
+		super.initFields();
+		nameField.setResponder(this::rename);
+	}
+	
+	private void rename(String name) {
+		if (!name.isEmpty()) {
+			String updatedName = name;
+			final Slot slot = this.container.getSlot(0);
+			
+			if (slot != null && slot.getHasStack() && !slot.getStack().hasDisplayName() && name.equals(slot.getStack().getDisplayName().getString())) {
+				updatedName = "";
+			}
+			
+			updatedName.replace("&", "§");
+			
+			container.updateItemName(updatedName);
+			minecraft.player.connection.sendPacket(new CRenameItemPacket(updatedName));
+		}
 	}
 	
 	@Override
@@ -43,6 +67,5 @@ public class EnhancedAnvilScreen extends AnvilScreen {
 				font.drawTextWithShadow(matrixStack, text, textX, textY, textColor);
 			}
 		}
-		
 	}
 }
