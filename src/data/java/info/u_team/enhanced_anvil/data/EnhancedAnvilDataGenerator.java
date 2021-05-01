@@ -23,13 +23,11 @@ public class EnhancedAnvilDataGenerator {
 		if (event.includeClient()) {
 			data.addProvider(EnhancedAnvilBlockStatesProvider::new);
 			data.addProvider(EnhancedAnvilItemModelsProvider::new);
-			
 			data.addProvider(EnhancedAnvilLanguagesProvider::new);
 		}
 		if (event.includeServer()) {
 			data.addProvider(EnhancedAnvilBlockTagsProvider::new);
 			data.addProvider(EnhancedAnvilItemTagsProvider::new);
-			
 			data.addProvider(EnhancedAnvilRecipesProvider::new);
 			data.addProvider(EnhancedAnvilLootTablesProvider::new);
 		}
