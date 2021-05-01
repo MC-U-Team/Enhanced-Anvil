@@ -20,6 +20,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.util.Constants.WorldEvents;
 
 public class EnhancedAnvilContainer extends RepairContainer {
 	
@@ -63,10 +64,10 @@ public class EnhancedAnvilContainer extends RepairContainer {
 					final BlockState newState = (((EnhancedAnvilBlock) oldState.getBlock()).damageAnvil(oldState));
 					if (newState == null) {
 						world.removeBlock(pos, false);
-						world.playEvent(1029, pos, 0);
+						world.playEvent(WorldEvents.ANVIL_DESTROYED_SOUND, pos, 0);
 					} else {
 						world.setBlockState(pos, newState, 2);
-						world.playEvent(1030, pos, 0);
+						world.playEvent(WorldEvents.ANVIL_USE_SOUND, pos, 0);
 					}
 				}
 			} else {
@@ -79,7 +80,7 @@ public class EnhancedAnvilContainer extends RepairContainer {
 	
 	@Override
 	public void updateRepairOutput() {
-		ItemStack itemstack = this.field_234643_d_.getStackInSlot(0);
+		final ItemStack itemstack = this.field_234643_d_.getStackInSlot(0);
 		this.maximumCost.set(1);
 		int i = 0;
 		int j = 0;
@@ -89,8 +90,8 @@ public class EnhancedAnvilContainer extends RepairContainer {
 			this.maximumCost.set(0);
 		} else {
 			ItemStack itemstack1 = itemstack.copy();
-			ItemStack itemstack2 = this.field_234643_d_.getStackInSlot(1);
-			Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(itemstack1);
+			final ItemStack itemstack2 = this.field_234643_d_.getStackInSlot(1);
+			final Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(itemstack1);
 			j = j + itemstack.getRepairCost() + (itemstack2.isEmpty() ? 0 : itemstack2.getRepairCost());
 			this.materialCost = 0;
 			boolean flag = false;
@@ -109,7 +110,7 @@ public class EnhancedAnvilContainer extends RepairContainer {
 					
 					int i3;
 					for (i3 = 0; l2 > 0 && i3 < itemstack2.getCount(); ++i3) {
-						int j3 = itemstack1.getDamage() - l2;
+						final int j3 = itemstack1.getDamage() - l2;
 						itemstack1.setDamage(j3);
 						++i;
 						l2 = Math.min(itemstack1.getDamage(), itemstack1.getMaxDamage() / 4);
@@ -124,10 +125,10 @@ public class EnhancedAnvilContainer extends RepairContainer {
 					}
 					
 					if (itemstack1.isDamageable() && !flag) {
-						int l = itemstack.getMaxDamage() - itemstack.getDamage();
-						int i1 = itemstack2.getMaxDamage() - itemstack2.getDamage();
-						int j1 = i1 + itemstack1.getMaxDamage() * 12 / 100;
-						int k1 = l + j1;
+						final int l = itemstack.getMaxDamage() - itemstack.getDamage();
+						final int i1 = itemstack2.getMaxDamage() - itemstack2.getDamage();
+						final int j1 = i1 + itemstack1.getMaxDamage() * 12 / 100;
+						final int k1 = l + j1;
 						int l1 = itemstack1.getMaxDamage() - k1;
 						if (l1 < 0) {
 							l1 = 0;
@@ -139,13 +140,13 @@ public class EnhancedAnvilContainer extends RepairContainer {
 						}
 					}
 					
-					Map<Enchantment, Integer> map1 = EnchantmentHelper.getEnchantments(itemstack2);
+					final Map<Enchantment, Integer> map1 = EnchantmentHelper.getEnchantments(itemstack2);
 					boolean flag2 = false;
 					boolean flag3 = false;
 					
-					for (Enchantment enchantment1 : map1.keySet()) {
+					for (final Enchantment enchantment1 : map1.keySet()) {
 						if (enchantment1 != null) {
-							int i2 = map.getOrDefault(enchantment1, 0);
+							final int i2 = map.getOrDefault(enchantment1, 0);
 							int j2 = map1.get(enchantment1);
 							j2 = i2 == j2 ? j2 + 1 : Math.max(j2, i2);
 							boolean flag1 = enchantment1.canApply(itemstack);
@@ -153,7 +154,7 @@ public class EnhancedAnvilContainer extends RepairContainer {
 								flag1 = true;
 							}
 							
-							for (Enchantment enchantment : map.keySet()) {
+							for (final Enchantment enchantment : map.keySet()) {
 								if (enchantment != enchantment1 && !enchantment1.isCompatibleWith(enchantment)) {
 									flag1 = false;
 									++i;
