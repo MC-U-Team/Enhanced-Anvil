@@ -15,7 +15,7 @@ public class EnhancedAnvilBlocks {
 	public static final BlockRegistryObject<EnhancedAnvilBlock, BlockItem> CHIPPED_ENHANCED_ANVIL = BLOCKS.register("chipped_enhanced_anvil", EnhancedAnvilBlock::new);
 	public static final BlockRegistryObject<EnhancedAnvilBlock, BlockItem> DAMAGED_ENHANCED_ANVIL = BLOCKS.register("damaged_enhanced_anvil", EnhancedAnvilBlock::new);
 	
-	public static void register(IEventBus bus) {
+	public static void registerMod(IEventBus bus) {
 		BLOCKS.register(bus);
 	}
 	

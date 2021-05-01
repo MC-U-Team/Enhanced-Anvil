@@ -15,7 +15,7 @@ public class EnhancedAnvilContainerTypes {
 	
 	public static final RegistryObject<UContainerType<EnhancedAnvilContainer>> ENHANCED_ANVIL = CONTAINER_TYPES.register("enhanced_anvil", () -> new UContainerType<EnhancedAnvilContainer>(EnhancedAnvilContainer::new));
 	
-	public static void register(IEventBus bus) {
+	public static void registerMod(IEventBus bus) {
 		CONTAINER_TYPES.register(bus);
 	}
 }

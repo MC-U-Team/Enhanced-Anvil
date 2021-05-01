@@ -10,8 +10,8 @@ public class EnhancedAnvilCommonConstruct implements IModConstruct {
 	
 	@Override
 	public void construct() {
-		BusRegister.registerMod(EnhancedAnvilBlocks::register);
-		BusRegister.registerMod(EnhancedAnvilContainerTypes::register);
+		BusRegister.registerMod(EnhancedAnvilBlocks::registerMod);
+		BusRegister.registerMod(EnhancedAnvilContainerTypes::registerMod);
 	}
 	
 }
