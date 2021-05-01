@@ -1,5 +1,5 @@
 {
-	"parent": "block/anvil",
+	"parent": "minecraft:block/anvil",
 	"textures": {
 		"particle": "enhancedanvil:block/anvil",
 		"body": "enhancedanvil:block/anvil",
