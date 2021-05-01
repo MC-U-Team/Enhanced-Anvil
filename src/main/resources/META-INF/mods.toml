@@ -12,7 +12,7 @@ authors="HyCraftHD"
 	version="${file.jarVersion}"
 	displayName="Enhanced Anvil"
 	updateJSONURL="https://api.u-team.info/update/enhancedanvil.json"
-	description="This mod adds a new anvil to the game that remove some enchantment restrictions but is still not overpowered."
+	description="This mod adds a new anvil to the game that removes the "Too Expensive" limit restriction but is still not overpowered."
 	
 	[[dependencies.enhancedanvil]]
 	    modId="forge"
