@@ -4,7 +4,7 @@ import info.u_team.enhanced_anvil.EnhancedAnvilMod;
 import info.u_team.enhanced_anvil.block.EnhancedAnvilBlock;
 import info.u_team.u_team_core.util.registry.BlockDeferredRegister;
 import info.u_team.u_team_core.util.registry.BlockRegistryObject;
-import net.minecraft.item.BlockItem;
+import net.minecraft.world.item.BlockItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 
 public class EnhancedAnvilBlocks {

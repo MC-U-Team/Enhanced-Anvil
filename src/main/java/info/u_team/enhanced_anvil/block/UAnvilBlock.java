@@ -1,10 +1,12 @@
 package info.u_team.enhanced_anvil.block;
 
 import info.u_team.u_team_core.api.registry.IBlockItemProvider;
-import net.minecraft.block.AnvilBlock;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.level.block.AnvilBlock;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
+
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class UAnvilBlock extends AnvilBlock implements IBlockItemProvider {
 	
@@ -14,7 +16,7 @@ public class UAnvilBlock extends AnvilBlock implements IBlockItemProvider {
 		this(null, properties);
 	}
 	
-	public UAnvilBlock(ItemGroup group, Properties properties) {
+	public UAnvilBlock(CreativeModeTab group, Properties properties) {
 		this(group, properties, null);
 	}
 	
@@ -22,9 +24,9 @@ public class UAnvilBlock extends AnvilBlock implements IBlockItemProvider {
 		this(null, properties, blockItemProperties);
 	}
 	
-	public UAnvilBlock(ItemGroup group, Properties properties, Item.Properties blockItemProperties) {
+	public UAnvilBlock(CreativeModeTab group, Properties properties, Item.Properties blockItemProperties) {
 		super(properties);
-		blockItem = createBlockItem(blockItemProperties == null ? new Item.Properties().group(group) : group == null ? blockItemProperties : blockItemProperties.group(group));
+		blockItem = createBlockItem(blockItemProperties == null ? new Item.Properties().tab(group) : group == null ? blockItemProperties : blockItemProperties.tab(group));
 	}
 	
 	protected BlockItem createBlockItem(Item.Properties blockItemProperties) {

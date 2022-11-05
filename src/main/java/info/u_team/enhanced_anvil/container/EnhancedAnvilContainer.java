@@ -6,72 +6,72 @@ import org.apache.commons.lang3.StringUtils;
 
 import info.u_team.enhanced_anvil.block.EnhancedAnvilBlock;
 import info.u_team.enhanced_anvil.init.EnhancedAnvilContainerTypes;
-import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.RepairContainer;
-import net.minecraft.item.EnchantedBookItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.network.PacketBuffer;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.AnvilMenu;
+import net.minecraft.world.item.EnchantedBookItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.util.Constants.WorldEvents;
 
-public class EnhancedAnvilContainer extends RepairContainer {
+public class EnhancedAnvilContainer extends AnvilMenu {
 	
 	// Client
-	public EnhancedAnvilContainer(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
-		this(id, playerInventory, IWorldPosCallable.DUMMY);
+	public EnhancedAnvilContainer(int id, Inventory playerInventory, FriendlyByteBuf buffer) {
+		this(id, playerInventory, ContainerLevelAccess.NULL);
 	}
 	
 	// Server
-	public EnhancedAnvilContainer(int id, PlayerInventory playerInventory, IWorldPosCallable posCallable) {
+	public EnhancedAnvilContainer(int id, Inventory playerInventory, ContainerLevelAccess posCallable) {
 		super(id, playerInventory, posCallable);
-		containerType = EnhancedAnvilContainerTypes.ENHANCED_ANVIL.get();
+		menuType = EnhancedAnvilContainerTypes.ENHANCED_ANVIL.get();
 	}
 	
 	@Override
-	protected ItemStack func_230301_a_(PlayerEntity player, ItemStack output) {
-		if (!player.abilities.isCreativeMode) {
-			player.addExperienceLevel(-maximumCost.get());
+	protected ItemStack onTake(Player player, ItemStack output) {
+		if (!player.abilities.instabuild) {
+			player.giveExperienceLevels(-cost.get());
 		}
 		
-		final float breakChance = ForgeHooks.onAnvilRepair(player, output, field_234643_d_.getStackInSlot(0), field_234643_d_.getStackInSlot(1));
+		final float breakChance = ForgeHooks.onAnvilRepair(player, output, inputSlots.getItem(0), inputSlots.getItem(1));
 		
-		field_234643_d_.setInventorySlotContents(0, ItemStack.EMPTY);
-		if (materialCost > 0) {
-			final ItemStack itemstack = this.field_234643_d_.getStackInSlot(1);
-			if (!itemstack.isEmpty() && itemstack.getCount() > this.materialCost) {
-				itemstack.shrink(this.materialCost);
-				field_234643_d_.setInventorySlotContents(1, itemstack);
+		inputSlots.setItem(0, ItemStack.EMPTY);
+		if (repairItemCountCost > 0) {
+			final ItemStack itemstack = this.inputSlots.getItem(1);
+			if (!itemstack.isEmpty() && itemstack.getCount() > this.repairItemCountCost) {
+				itemstack.shrink(this.repairItemCountCost);
+				inputSlots.setItem(1, itemstack);
 			} else {
-				field_234643_d_.setInventorySlotContents(1, ItemStack.EMPTY);
+				inputSlots.setItem(1, ItemStack.EMPTY);
 			}
 		} else {
-			field_234643_d_.setInventorySlotContents(1, ItemStack.EMPTY);
+			inputSlots.setItem(1, ItemStack.EMPTY);
 		}
 		
-		maximumCost.set(0);
-		field_234644_e_.consume((world, pos) -> {
+		cost.set(0);
+		access.execute((world, pos) -> {
 			final BlockState oldState = world.getBlockState(pos);
-			if (!player.abilities.isCreativeMode && oldState.isIn(BlockTags.ANVIL) && player.getRNG().nextFloat() < breakChance) {
+			if (!player.abilities.instabuild && oldState.is(BlockTags.ANVIL) && player.getRandom().nextFloat() < breakChance) {
 				if (oldState.getBlock() instanceof EnhancedAnvilBlock) {
 					final BlockState newState = (((EnhancedAnvilBlock) oldState.getBlock()).damageAnvil(oldState));
 					if (newState == null) {
 						world.removeBlock(pos, false);
-						world.playEvent(WorldEvents.ANVIL_DESTROYED_SOUND, pos, 0);
+						world.levelEvent(WorldEvents.ANVIL_DESTROYED_SOUND, pos, 0);
 					} else {
-						world.setBlockState(pos, newState, 2);
-						world.playEvent(WorldEvents.ANVIL_USE_SOUND, pos, 0);
+						world.setBlock(pos, newState, 2);
+						world.levelEvent(WorldEvents.ANVIL_USE_SOUND, pos, 0);
 					}
 				}
 			} else {
-				world.playEvent(1030, pos, 0);
+				world.levelEvent(1030, pos, 0);
 			}
 			
 		});
@@ -79,54 +79,54 @@ public class EnhancedAnvilContainer extends RepairContainer {
 	}
 	
 	@Override
-	public void updateRepairOutput() {
-		final ItemStack itemstack = this.field_234643_d_.getStackInSlot(0);
-		this.maximumCost.set(1);
+	public void createResult() {
+		final ItemStack itemstack = this.inputSlots.getItem(0);
+		this.cost.set(1);
 		int i = 0;
 		int j = 0;
 		int k = 0;
 		if (itemstack.isEmpty()) {
-			this.field_234642_c_.setInventorySlotContents(0, ItemStack.EMPTY);
-			this.maximumCost.set(0);
+			this.resultSlots.setItem(0, ItemStack.EMPTY);
+			this.cost.set(0);
 		} else {
 			ItemStack itemstack1 = itemstack.copy();
-			final ItemStack itemstack2 = this.field_234643_d_.getStackInSlot(1);
+			final ItemStack itemstack2 = this.inputSlots.getItem(1);
 			final Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(itemstack1);
-			j = j + itemstack.getRepairCost() + (itemstack2.isEmpty() ? 0 : itemstack2.getRepairCost());
-			this.materialCost = 0;
+			j = j + itemstack.getBaseRepairCost() + (itemstack2.isEmpty() ? 0 : itemstack2.getBaseRepairCost());
+			this.repairItemCountCost = 0;
 			boolean flag = false;
 			
 			if (!itemstack2.isEmpty()) {
-				if (!net.minecraftforge.common.ForgeHooks.onAnvilChange(this, itemstack, itemstack2, field_234642_c_, repairedItemName, j, this.field_234645_f_))
+				if (!net.minecraftforge.common.ForgeHooks.onAnvilChange(this, itemstack, itemstack2, resultSlots, itemName, j, this.player))
 					return;
 				flag = itemstack2.getItem() == Items.ENCHANTED_BOOK && !EnchantedBookItem.getEnchantments(itemstack2).isEmpty();
-				if (itemstack1.isDamageable() && itemstack1.getItem().getIsRepairable(itemstack, itemstack2)) {
-					int l2 = Math.min(itemstack1.getDamage(), itemstack1.getMaxDamage() / 4);
+				if (itemstack1.isDamageableItem() && itemstack1.getItem().isValidRepairItem(itemstack, itemstack2)) {
+					int l2 = Math.min(itemstack1.getDamageValue(), itemstack1.getMaxDamage() / 4);
 					if (l2 <= 0) {
-						this.field_234642_c_.setInventorySlotContents(0, ItemStack.EMPTY);
-						this.maximumCost.set(0);
+						this.resultSlots.setItem(0, ItemStack.EMPTY);
+						this.cost.set(0);
 						return;
 					}
 					
 					int i3;
 					for (i3 = 0; l2 > 0 && i3 < itemstack2.getCount(); ++i3) {
-						final int j3 = itemstack1.getDamage() - l2;
-						itemstack1.setDamage(j3);
+						final int j3 = itemstack1.getDamageValue() - l2;
+						itemstack1.setDamageValue(j3);
 						++i;
-						l2 = Math.min(itemstack1.getDamage(), itemstack1.getMaxDamage() / 4);
+						l2 = Math.min(itemstack1.getDamageValue(), itemstack1.getMaxDamage() / 4);
 					}
 					
-					this.materialCost = i3;
+					this.repairItemCountCost = i3;
 				} else {
-					if (!flag && (itemstack1.getItem() != itemstack2.getItem() || !itemstack1.isDamageable())) {
-						this.field_234642_c_.setInventorySlotContents(0, ItemStack.EMPTY);
-						this.maximumCost.set(0);
+					if (!flag && (itemstack1.getItem() != itemstack2.getItem() || !itemstack1.isDamageableItem())) {
+						this.resultSlots.setItem(0, ItemStack.EMPTY);
+						this.cost.set(0);
 						return;
 					}
 					
-					if (itemstack1.isDamageable() && !flag) {
-						final int l = itemstack.getMaxDamage() - itemstack.getDamage();
-						final int i1 = itemstack2.getMaxDamage() - itemstack2.getDamage();
+					if (itemstack1.isDamageableItem() && !flag) {
+						final int l = itemstack.getMaxDamage() - itemstack.getDamageValue();
+						final int i1 = itemstack2.getMaxDamage() - itemstack2.getDamageValue();
 						final int j1 = i1 + itemstack1.getMaxDamage() * 12 / 100;
 						final int k1 = l + j1;
 						int l1 = itemstack1.getMaxDamage() - k1;
@@ -134,8 +134,8 @@ public class EnhancedAnvilContainer extends RepairContainer {
 							l1 = 0;
 						}
 						
-						if (l1 < itemstack1.getDamage()) {
-							itemstack1.setDamage(l1);
+						if (l1 < itemstack1.getDamageValue()) {
+							itemstack1.setDamageValue(l1);
 							i += 2;
 						}
 					}
@@ -149,8 +149,8 @@ public class EnhancedAnvilContainer extends RepairContainer {
 							final int i2 = map.getOrDefault(enchantment1, 0);
 							int j2 = map1.get(enchantment1);
 							j2 = i2 == j2 ? j2 + 1 : Math.max(j2, i2);
-							boolean flag1 = enchantment1.canApply(itemstack);
-							if (this.field_234645_f_.abilities.isCreativeMode || itemstack.getItem() == Items.ENCHANTED_BOOK) {
+							boolean flag1 = enchantment1.canEnchant(itemstack);
+							if (this.player.abilities.instabuild || itemstack.getItem() == Items.ENCHANTED_BOOK) {
 								flag1 = true;
 							}
 							
@@ -198,52 +198,52 @@ public class EnhancedAnvilContainer extends RepairContainer {
 					}
 					
 					if (flag3 && !flag2) {
-						this.field_234642_c_.setInventorySlotContents(0, ItemStack.EMPTY);
-						this.maximumCost.set(0);
+						this.resultSlots.setItem(0, ItemStack.EMPTY);
+						this.cost.set(0);
 						return;
 					}
 				}
 			}
 			
-			if (StringUtils.isBlank(this.repairedItemName)) {
-				if (itemstack.hasDisplayName()) {
+			if (StringUtils.isBlank(this.itemName)) {
+				if (itemstack.hasCustomHoverName()) {
 					k = 1;
 					i += k;
-					itemstack1.clearCustomName();
+					itemstack1.resetHoverName();
 				}
-			} else if (!this.repairedItemName.equals(itemstack.getDisplayName().getString())) {
+			} else if (!this.itemName.equals(itemstack.getHoverName().getString())) {
 				k = 1;
 				i += k;
-				itemstack1.setDisplayName(new StringTextComponent(this.repairedItemName));
+				itemstack1.setHoverName(new TextComponent(this.itemName));
 			}
 			if (flag && !itemstack1.isBookEnchantable(itemstack2))
 				itemstack1 = ItemStack.EMPTY;
 			
-			this.maximumCost.set(j + i);
+			this.cost.set(j + i);
 			if (i <= 0) {
 				itemstack1 = ItemStack.EMPTY;
 			}
 			
-			if (k == i && k > 0 && this.maximumCost.get() >= 40) {
-				this.maximumCost.set(39);
+			if (k == i && k > 0 && this.cost.get() >= 40) {
+				this.cost.set(39);
 			}
 			
 			if (!itemstack1.isEmpty()) {
-				int k2 = itemstack1.getRepairCost();
-				if (!itemstack2.isEmpty() && k2 < itemstack2.getRepairCost()) {
-					k2 = itemstack2.getRepairCost();
+				int k2 = itemstack1.getBaseRepairCost();
+				if (!itemstack2.isEmpty() && k2 < itemstack2.getBaseRepairCost()) {
+					k2 = itemstack2.getBaseRepairCost();
 				}
 				
 				if (k != i || k == 0) {
-					k2 = getNewRepairCost(k2);
+					k2 = calculateIncreasedRepairCost(k2);
 				}
 				
 				itemstack1.setRepairCost(k2);
 				EnchantmentHelper.setEnchantments(map, itemstack1);
 			}
 			
-			this.field_234642_c_.setInventorySlotContents(0, itemstack1);
-			this.detectAndSendChanges();
+			this.resultSlots.setItem(0, itemstack1);
+			this.broadcastChanges();
 		}
 	}
 }
