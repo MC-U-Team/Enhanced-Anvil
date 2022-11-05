@@ -1,4 +1,7 @@
 {
-	"replace": false,
-	"values": []
+	"values": [
+		"enhancedanvil:enhanced_anvil",
+		"enhancedanvil:chipped_enhanced_anvil",
+		"enhancedanvil:damaged_enhanced_anvil"
+	]
 }

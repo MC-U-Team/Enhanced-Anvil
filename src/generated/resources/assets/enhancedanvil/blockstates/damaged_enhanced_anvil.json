@@ -1,5 +1,9 @@
 {
 	"variants": {
+		"facing=east": {
+			"model": "enhancedanvil:block/damaged_enhanced_anvil",
+			"y": 270
+		},
 		"facing=north": {
 			"model": "enhancedanvil:block/damaged_enhanced_anvil",
 			"y": 180
@@ -10,10 +14,6 @@
 		"facing=west": {
 			"model": "enhancedanvil:block/damaged_enhanced_anvil",
 			"y": 90
-		},
-		"facing=east": {
-			"model": "enhancedanvil:block/damaged_enhanced_anvil",
-			"y": 270
 		}
 	}
 }

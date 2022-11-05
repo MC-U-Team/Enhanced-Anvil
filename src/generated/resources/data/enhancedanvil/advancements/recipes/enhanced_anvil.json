@@ -1,36 +1,33 @@
 {
 	"parent": "minecraft:recipes/root",
-	"rewards": {
-		"recipes": [
-			"enhancedanvil:enhanced_anvil"
-		]
-	},
 	"criteria": {
+		"has_anvil": {
+			"conditions": {
+				"items": [
+					{
+						"items": [
+							"minecraft:anvil"
+						]
+					}
+				]
+			},
+			"trigger": "minecraft:inventory_changed"
+		},
 		"has_iron": {
-			"trigger": "minecraft:inventory_changed",
 			"conditions": {
 				"items": [
 					{
 						"tag": "forge:ingots/iron"
 					}
 				]
-			}
-		},
-		"has_anvil": {
-			"trigger": "minecraft:inventory_changed",
-			"conditions": {
-				"items": [
-					{
-						"item": "minecraft:anvil"
-					}
-				]
-			}
+			},
+			"trigger": "minecraft:inventory_changed"
 		},
 		"has_the_recipe": {
-			"trigger": "minecraft:recipe_unlocked",
 			"conditions": {
 				"recipe": "enhancedanvil:enhanced_anvil"
-			}
+			},
+			"trigger": "minecraft:recipe_unlocked"
 		}
 	},
 	"requirements": [
@@ -39,5 +36,10 @@
 			"has_anvil",
 			"has_the_recipe"
 		]
-	]
+	],
+	"rewards": {
+		"recipes": [
+			"enhancedanvil:enhanced_anvil"
+		]
+	}
 }
