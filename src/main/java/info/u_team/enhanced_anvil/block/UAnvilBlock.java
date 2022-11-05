@@ -1,32 +1,34 @@
 package info.u_team.enhanced_anvil.block;
 
-import info.u_team.u_team_core.api.registry.IBlockItemProvider;
-import net.minecraft.world.level.block.AnvilBlock;
+import java.util.function.Supplier;
+
+import com.google.common.base.Suppliers;
+
+import info.u_team.u_team_core.api.block.BlockItemProvider;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.AnvilBlock;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
-public class UAnvilBlock extends AnvilBlock implements IBlockItemProvider {
+public class UAnvilBlock extends AnvilBlock implements BlockItemProvider {
 	
-	protected final BlockItem blockItem;
+	protected final Supplier<BlockItem> blockItem;
 	
 	public UAnvilBlock(Properties properties) {
 		this(null, properties);
 	}
 	
-	public UAnvilBlock(CreativeModeTab group, Properties properties) {
-		this(group, properties, null);
+	public UAnvilBlock(CreativeModeTab creativeTab, Properties properties) {
+		this(creativeTab, properties, null);
 	}
 	
 	public UAnvilBlock(Properties properties, Item.Properties blockItemProperties) {
 		this(null, properties, blockItemProperties);
 	}
 	
-	public UAnvilBlock(CreativeModeTab group, Properties properties, Item.Properties blockItemProperties) {
+	public UAnvilBlock(CreativeModeTab creativeTab, Properties properties, Item.Properties blockItemProperties) {
 		super(properties);
-		blockItem = createBlockItem(blockItemProperties == null ? new Item.Properties().tab(group) : group == null ? blockItemProperties : blockItemProperties.tab(group));
+		blockItem = Suppliers.memoize(() -> createBlockItem(blockItemProperties == null ? new Item.Properties().tab(creativeTab) : creativeTab == null ? blockItemProperties : blockItemProperties.tab(creativeTab)));
 	}
 	
 	protected BlockItem createBlockItem(Item.Properties blockItemProperties) {
@@ -34,7 +36,7 @@ public class UAnvilBlock extends AnvilBlock implements IBlockItemProvider {
 	}
 	
 	@Override
-	public BlockItem getBlockItem() {
-		return blockItem;
+	public BlockItem blockItem() {
+		return blockItem.get();
 	}
 }

@@ -1,46 +1,40 @@
 package info.u_team.enhanced_anvil.block;
 
-import java.util.Optional;
-import java.util.Random;
-import java.util.function.BiFunction;
+import javax.annotation.Nullable;
 
-import info.u_team.enhanced_anvil.container.EnhancedAnvilContainer;
 import info.u_team.enhanced_anvil.entity.EnhancedAnvilFallingBlockEntity;
 import info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks;
-import info.u_team.enhanced_anvil.init.EnhancedAnvilItemGroups;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
-import net.minecraft.world.entity.item.FallingBlockEntity;
+import info.u_team.enhanced_anvil.init.EnhancedAnvilCreativeTabs;
+import info.u_team.enhanced_anvil.menu.EnhancedAnvilMenu;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 
 public class EnhancedAnvilBlock extends UAnvilBlock {
 	
-	private static final TranslatableComponent NAME = new TranslatableComponent("container.enhancedanvil.enhanved_anvil");
+	private static final Component CONTAINER_TITLE = Component.translatable("container.enhancedanvil.enhanved_anvil");
 	
 	public EnhancedAnvilBlock() {
-		super(EnhancedAnvilItemGroups.GROUP, Properties.of(Material.HEAVY_METAL, MaterialColor.METAL).strength(5.0F, 1200.0F).sound(SoundType.ANVIL));
+		super(EnhancedAnvilCreativeTabs.TAB, Properties.of(Material.HEAVY_METAL, MaterialColor.METAL).strength(5.0F, 1200.0F).sound(SoundType.ANVIL));
 	}
 	
-	@Override
-	public MenuProvider getMenuProvider(BlockState state, Level world, BlockPos pos) {
-		return new SimpleMenuProvider((id, playerInventory, player) -> new EnhancedAnvilContainer(id, playerInventory, new ContainerLevelAccess() {
-			
-			@Override
-			public <T> Optional<T> evaluate(BiFunction<Level, BlockPos, T> function) {
-				return Optional.ofNullable(function.apply(world, pos));
-			}
-		}), NAME);
+	@Nullable
+	public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
+		return new SimpleMenuProvider((id, playerInventory, player) -> {
+			return new EnhancedAnvilMenu(id, playerInventory, ContainerLevelAccess.create(level, pos));
+		}, CONTAINER_TITLE);
 	}
 	
 	public BlockState damageAnvil(BlockState state) {
@@ -53,13 +47,12 @@ public class EnhancedAnvilBlock extends UAnvilBlock {
 	}
 	
 	@Override
-	public void tick(BlockState state, ServerLevel world, BlockPos pos, Random rand) {
-		if (world.isEmptyBlock(pos.below()) || isFree(world.getBlockState(pos.below())) && pos.getY() >= 0) {
-			if (!world.isClientSide) {
-				final FallingBlockEntity entity = new EnhancedAnvilFallingBlockEntity(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, world.getBlockState(pos));
-				falling(entity);
-				world.addFreshEntity(entity);
-			}
+	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+		if (isFree(level.getBlockState(pos.below())) && pos.getY() >= level.getMinBuildHeight()) {
+			final FallingBlockEntity entity = new EnhancedAnvilFallingBlockEntity(level, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, state.hasProperty(BlockStateProperties.WATERLOGGED) ? state.setValue(BlockStateProperties.WATERLOGGED, false) : state);
+			level.setBlock(pos, state.getFluidState().createLegacyBlock(), 3);
+			level.addFreshEntity(entity);
+			falling(entity);
 		}
 	}
 }

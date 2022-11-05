@@ -1,47 +1,52 @@
 package info.u_team.enhanced_anvil.entity;
 
-import java.util.List;
-
-import com.google.common.collect.Lists;
+import java.util.function.Predicate;
 
 import info.u_team.enhanced_anvil.block.EnhancedAnvilBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.item.FallingBlockEntity;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Fallable;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class EnhancedAnvilFallingBlockEntity extends FallingBlockEntity {
 	
-	public EnhancedAnvilFallingBlockEntity(Level world, double x, double y, double z, BlockState fallingBlockState) {
-		super(world, x, y, z, fallingBlockState);
+	public EnhancedAnvilFallingBlockEntity(Level level, double x, double y, double z, BlockState state) {
+		super(level, x, y, z, state);
 	}
 	
 	@Override
-	public boolean causeFallDamage(float distance, float damageMultiplier) {
+	public boolean causeFallDamage(float fallDistance, float multiplier, DamageSource source) {
 		if (hurtEntities) {
-			final int fallingHeightAttribute = Mth.ceil(distance - 1.0F);
-			if (fallingHeightAttribute > 0) {
-				final List<Entity> list = Lists.newArrayList(level.getEntities(this, getBoundingBox()));
-				final boolean isAnvil = blockState.getBlock() instanceof EnhancedAnvilBlock;
-				final DamageSource source = isAnvil ? DamageSource.ANVIL : DamageSource.FALLING_BLOCK;
-				
-				for (final Entity entity : list) {
-					entity.hurt(source, Math.min(Mth.floor(fallingHeightAttribute * fallDamageAmount), fallDamageMax));
+			final int fallDistanceRounded = Mth.ceil(fallDistance - 1.0F);
+			if (fallDistanceRounded < 0) {
+				return false;
+			} else {
+				final Predicate<Entity> predicate;
+				final DamageSource damagesource;
+				if (blockState.getBlock() instanceof Fallable fallable) {
+					predicate = fallable.getHurtsEntitySelector();
+					damagesource = fallable.getFallDamageSource();
+				} else {
+					predicate = EntitySelector.NO_SPECTATORS;
+					damagesource = DamageSource.FALLING_BLOCK;
 				}
+				float damage = Math.min(Mth.floor(fallDistanceRounded * fallDamagePerDistance), fallDamageMax);
+				level.getEntities(this, getBoundingBox(), predicate).forEach(entity -> entity.hurt(damagesource, damage));
 				
-				if (isAnvil && random.nextFloat() < 0.05 + fallingHeightAttribute * 0.05) {
-					final BlockState state = ((EnhancedAnvilBlock) blockState.getBlock()).damageAnvil(blockState);
-					if (state == null) {
+				if (blockState.getBlock() instanceof EnhancedAnvilBlock block && damage > 0.0F && random.nextFloat() < 0.05F + fallDistanceRounded * 0.05F) {
+					final BlockState damagedState = block.damageAnvil(blockState);
+					if (damagedState == null) {
 						cancelDrop = true;
 					} else {
-						blockState = state;
+						blockState = damagedState;
 					}
 				}
 			}
 		}
 		return false;
 	}
-	
 }
