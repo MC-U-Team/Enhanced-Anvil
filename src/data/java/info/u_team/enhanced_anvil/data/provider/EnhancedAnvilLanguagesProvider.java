@@ -10,12 +10,12 @@ import info.u_team.u_team_core.data.GenerationData;
 
 public class EnhancedAnvilLanguagesProvider extends CommonLanguagesProvider {
 	
-	public EnhancedAnvilLanguagesProvider(GenerationData data) {
-		super(data);
+	public EnhancedAnvilLanguagesProvider(GenerationData generationData) {
+		super(generationData);
 	}
 	
 	@Override
-	public void addTranslations() {
+	public void register() {
 		final String container = "container.enhancedanvil.enhanved_anvil";
 		
 		// English

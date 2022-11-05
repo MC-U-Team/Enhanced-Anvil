@@ -4,21 +4,21 @@ import static info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks.CHIPPED_ENHANC
 import static info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks.DAMAGED_ENHANCED_ANVIL;
 import static info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks.ENHANCED_ANVIL;
 
-import info.u_team.u_team_core.data.CommonBlockStatesProvider;
+import info.u_team.u_team_core.data.CommonBlockStateProvider;
 import info.u_team.u_team_core.data.GenerationData;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.ModelFile.UncheckedModelFile;
 
-public class EnhancedAnvilBlockStatesProvider extends CommonBlockStatesProvider {
+public class EnhancedAnvilBlockStateProvider extends CommonBlockStateProvider {
 	
-	public EnhancedAnvilBlockStatesProvider(GenerationData data) {
-		super(data);
+	public EnhancedAnvilBlockStateProvider(GenerationData generationData) {
+		super(generationData);
 	}
 	
 	@Override
-	protected void registerStatesAndModels() {
+	public void register() {
 		allAnvilBlock("anvil", ENHANCED_ANVIL.get(), CHIPPED_ENHANCED_ANVIL.get(), DAMAGED_ENHANCED_ANVIL.get());
 	}
 	

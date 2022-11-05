@@ -4,21 +4,21 @@ import static info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks.ENHANCED_ANVIL
 
 import java.util.function.Consumer;
 
-import info.u_team.u_team_core.data.CommonRecipesProvider;
+import info.u_team.u_team_core.data.CommonRecipeProvider;
 import info.u_team.u_team_core.data.GenerationData;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 
-public class EnhancedAnvilRecipesProvider extends CommonRecipesProvider {
+public class EnhancedAnvilRecipeProvider extends CommonRecipeProvider {
 	
-	public EnhancedAnvilRecipesProvider(GenerationData data) {
-		super(data);
+	public EnhancedAnvilRecipeProvider(GenerationData generationData) {
+		super(generationData);
 	}
 	
 	@Override
-	protected void registerRecipes(Consumer<FinishedRecipe> consumer) {
+	public void register(Consumer<FinishedRecipe> consumer) {
 		ShapedRecipeBuilder.shaped(ENHANCED_ANVIL.get()) //
 				.pattern("III") //
 				.pattern(" A ") //
@@ -26,8 +26,8 @@ public class EnhancedAnvilRecipesProvider extends CommonRecipesProvider {
 				.define('I', getIngredientOfTag(Tags.Items.INGOTS_IRON)) //
 				.define('A', Blocks.ANVIL) //
 				.define('B', getIngredientOfTag(Tags.Items.STORAGE_BLOCKS_IRON)) //
-				.unlockedBy("has_iron", hasItem(Tags.Items.INGOTS_IRON)) //
-				.unlockedBy("has_anvil", hasItem(Blocks.ANVIL)) //
+				.unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)) //
+				.unlockedBy("has_anvil", has(Blocks.ANVIL)) //
 				.save(consumer);
 	}
 }

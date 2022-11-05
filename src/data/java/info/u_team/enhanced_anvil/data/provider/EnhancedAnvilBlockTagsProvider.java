@@ -10,13 +10,13 @@ import net.minecraft.tags.BlockTags;
 
 public class EnhancedAnvilBlockTagsProvider extends CommonBlockTagsProvider {
 	
-	public EnhancedAnvilBlockTagsProvider(GenerationData data) {
-		super(data);
+	public EnhancedAnvilBlockTagsProvider(GenerationData generationData) {
+		super(generationData);
 	}
 	
 	@Override
-	protected void registerTags() {
-		getBuilder(BlockTags.ANVIL).add(ENHANCED_ANVIL.get(), CHIPPED_ENHANCED_ANVIL.get(), DAMAGED_ENHANCED_ANVIL.get());
+	public void register() {
+		tag(BlockTags.ANVIL).add(ENHANCED_ANVIL.get(), CHIPPED_ENHANCED_ANVIL.get(), DAMAGED_ENHANCED_ANVIL.get());
 	}
 	
 }

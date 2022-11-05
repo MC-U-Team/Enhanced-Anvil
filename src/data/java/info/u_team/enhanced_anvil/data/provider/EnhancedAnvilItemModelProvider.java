@@ -4,17 +4,17 @@ import static info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks.CHIPPED_ENHANC
 import static info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks.DAMAGED_ENHANCED_ANVIL;
 import static info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks.ENHANCED_ANVIL;
 
-import info.u_team.u_team_core.data.CommonItemModelsProvider;
+import info.u_team.u_team_core.data.CommonItemModelProvider;
 import info.u_team.u_team_core.data.GenerationData;
 
-public class EnhancedAnvilItemModelsProvider extends CommonItemModelsProvider {
+public class EnhancedAnvilItemModelProvider extends CommonItemModelProvider {
 	
-	public EnhancedAnvilItemModelsProvider(GenerationData data) {
-		super(data);
+	public EnhancedAnvilItemModelProvider(GenerationData generationData) {
+		super(generationData);
 	}
 	
 	@Override
-	protected void registerModels() {
+	public void register() {
 		simpleBlock(ENHANCED_ANVIL.get());
 		simpleBlock(CHIPPED_ENHANCED_ANVIL.get());
 		simpleBlock(DAMAGED_ENHANCED_ANVIL.get());
