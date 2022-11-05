@@ -1,36 +1,36 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[43,)"
 issueTrackerURL="https://github.com/MC-U-Team/Enhanced-Anvil/issues"
-displayURL="https://u-team.info/mods/enhancedanvil"
-logoFile="logo.png"
 license="Apache-2.0 License"
-credits="Team U-Team"
-authors="HyCraftHD"
 
 [[mods]]
 	modId="enhancedanvil"
 	version="${file.jarVersion}"
 	displayName="Enhanced Anvil"
+	displayURL="https://u-team.info/mods/enhancedanvil"
 	updateJSONURL="https://api.u-team.info/update/enhancedanvil.json"
-	description="This mod adds a new anvil to the game that removes the 'Too Expensive' limit restriction but is still not overpowered."
+	logoFile="logo.png"
+	credits="Team U-Team"
+	authors="HyCraftHD"
+	description="Join our discord server here: https://discord.hycrafthd.net\n\nThis mod adds a new anvil to the game that removes the 'Too Expensive' limit restriction but is still not overpowered."
 	
 	[[dependencies.enhancedanvil]]
 	    modId="forge"
 	    mandatory=true
-	    versionRange="[36.1.30,)"
+	    versionRange="[43.1.43,)"
 	    ordering="NONE"
 	    side="BOTH"
 	
 	[[dependencies.enhancedanvil]]
 	    modId="minecraft"
 	    mandatory=true
-	    versionRange="[1.16.5]"
+	    versionRange="[1.19.2]"
 	    ordering="NONE"
 	    side="BOTH"
 	    
 	[[dependencies.enhancedanvil]]
 	    modId="uteamcore"
 	    mandatory=true
-	    versionRange="[3.2.1.229,)"
+	    versionRange="[4.4.1.233,)"
 	    ordering="NONE"
 	    side="BOTH"
