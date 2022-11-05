@@ -56,7 +56,7 @@ public class EnhancedAnvilMenu extends AnvilMenu {
 		cost.set(0);
 		access.execute((level, pos) -> {
 			final BlockState blockState = level.getBlockState(pos);
-			if (!player.getAbilities().instabuild && blockState.getBlock() instanceof EnhancedAnvilBlock block && player.getRandom().nextFloat() < breakChance) {
+			if (!player.getAbilities().instabuild && blockState.getBlock() instanceof final EnhancedAnvilBlock block && player.getRandom().nextFloat() < breakChance) {
 				final BlockState damagedState = block.damageAnvil(blockState);
 				if (damagedState == null) {
 					level.removeBlock(pos, false);

@@ -27,17 +27,17 @@ public class EnhancedAnvilFallingBlockEntity extends FallingBlockEntity {
 			} else {
 				final Predicate<Entity> predicate;
 				final DamageSource damagesource;
-				if (blockState.getBlock() instanceof Fallable fallable) {
+				if (blockState.getBlock() instanceof final Fallable fallable) {
 					predicate = fallable.getHurtsEntitySelector();
 					damagesource = fallable.getFallDamageSource();
 				} else {
 					predicate = EntitySelector.NO_SPECTATORS;
 					damagesource = DamageSource.FALLING_BLOCK;
 				}
-				float damage = Math.min(Mth.floor(fallDistanceRounded * fallDamagePerDistance), fallDamageMax);
+				final float damage = Math.min(Mth.floor(fallDistanceRounded * fallDamagePerDistance), fallDamageMax);
 				level.getEntities(this, getBoundingBox(), predicate).forEach(entity -> entity.hurt(damagesource, damage));
 				
-				if (blockState.getBlock() instanceof EnhancedAnvilBlock block && damage > 0.0F && random.nextFloat() < 0.05F + fallDistanceRounded * 0.05F) {
+				if (blockState.getBlock() instanceof final EnhancedAnvilBlock block && damage > 0.0F && random.nextFloat() < 0.05F + fallDistanceRounded * 0.05F) {
 					final BlockState damagedState = block.damageAnvil(blockState);
 					if (damagedState == null) {
 						cancelDrop = true;

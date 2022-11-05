@@ -30,6 +30,7 @@ public class EnhancedAnvilBlock extends UAnvilBlock {
 		super(EnhancedAnvilCreativeTabs.TAB, Properties.of(Material.HEAVY_METAL, MaterialColor.METAL).strength(5.0F, 1200.0F).sound(SoundType.ANVIL));
 	}
 	
+	@Override
 	@Nullable
 	public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
 		return new SimpleMenuProvider((id, playerInventory, player) -> {
