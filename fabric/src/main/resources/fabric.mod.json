@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "enhancedanvil",
+	"version": "${version}",
+	"name": "Enhanced Anvil",
+	"description": "Join our discord server here: https://discord.hycrafthd.net\n\nThis mod adds a new anvil to the game that removes the 'Too Expensive' limit restriction but is still not overpowered.",
+	"authors": [
+		"HyCraftHD"
+	],
+	"contact": {
+		"homepage": "https://u-team.info/mods/enhancedanvil",
+		"sources": "https://github.com/MC-U-Team/Enhanced-Anvil",
+		"issues": "https://github.com/MC-U-Team/Enhanced-Anvil/issues"
+	},
+	"license": "Apache-2.0 License",
+	"icon": "logo.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"info.u_team.enhanced_anvil.EnhancedAnvilMod"
+		]
+	},
+	"accessWidener": "enhancedanvil.accesswidener",
+	"depends": {
+		"uteamcore": ">=5.1.3.267",
+		"fabricloader": ">=0.14.21",
+		"fabric": ">=0.84.0+1.20.1",
+		"minecraft": "1.20.1",
+		"java": ">=17"
+	},
+	"custom": {
+		"uteamcore:update_url": "https://api.u-team.info/update/enhancedanvil_fabric.json",
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://discord.hycrafthd.net"
+			}
+		}
+	}
+}
