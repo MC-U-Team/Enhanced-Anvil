@@ -6,7 +6,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import info.u_team.enhanced_anvil.block.EnhancedAnvilBlock;
 import info.u_team.enhanced_anvil.init.EnhancedAnvilMenuTypes;
+import info.u_team.u_team_core.util.ServiceUtil;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AnvilMenu;
@@ -17,9 +19,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.ForgeHooks;
 
 public class EnhancedAnvilMenu extends AnvilMenu {
+	
+	private static final LoaderImpl LOADER_IMPL = ServiceUtil.loadOne(LoaderImpl.class);
 	
 	// Client
 	public EnhancedAnvilMenu(int containerId, Inventory playerInventory) {
@@ -38,8 +41,7 @@ public class EnhancedAnvilMenu extends AnvilMenu {
 			player.giveExperienceLevels(-cost.get());
 		}
 		
-		final float breakChance = ForgeHooks.onAnvilRepair(player, stack, inputSlots.getItem(0), inputSlots.getItem(1));
-		
+		final float breakChance = LOADER_IMPL.getBreakChance(player, stack, inputSlots.getItem(0), inputSlots.getItem(1));
 		inputSlots.setItem(0, ItemStack.EMPTY);
 		if (repairItemCountCost > 0) {
 			final ItemStack itemstack = inputSlots.getItem(1);
@@ -89,8 +91,9 @@ public class EnhancedAnvilMenu extends AnvilMenu {
 			repairItemCountCost = 0;
 			boolean flag = false;
 			
-			if (!ForgeHooks.onAnvilChange(this, itemstack, itemstack2, resultSlots, itemName, j, player))
+			if (!LOADER_IMPL.anvilChange(this, itemstack, itemstack2, resultSlots, itemName, j, player)) {
 				return;
+			}
 			if (!itemstack2.isEmpty()) {
 				flag = itemstack2.getItem() == Items.ENCHANTED_BOOK && !EnchantedBookItem.getEnchantments(itemstack2).isEmpty();
 				if (itemstack1.isDamageableItem() && itemstack1.getItem().isValidRepairItem(itemstack, itemstack2)) {
@@ -209,8 +212,9 @@ public class EnhancedAnvilMenu extends AnvilMenu {
 				i += k;
 				itemstack1.setHoverName(Component.literal(itemName));
 			}
-			if (flag && !itemstack1.isBookEnchantable(itemstack2))
+			if (flag && !LOADER_IMPL.enchantable(itemstack1, itemstack2)) {
 				itemstack1 = ItemStack.EMPTY;
+			}
 			
 			cost.set(j + i);
 			if (i <= 0) {
@@ -238,6 +242,15 @@ public class EnhancedAnvilMenu extends AnvilMenu {
 			resultSlots.setItem(0, itemstack1);
 			broadcastChanges();
 		}
+	}
+	
+	public static interface LoaderImpl {
+		
+		float getBreakChance(Player player, ItemStack output, ItemStack left, ItemStack right);
+		
+		boolean anvilChange(AnvilMenu container, ItemStack left, ItemStack right, Container outputSlot, String name, int baseCost, Player player);
+		
+		boolean enchantable(ItemStack stack, ItemStack book);
 	}
 	
 }

@@ -13,5 +13,6 @@ mutable field net/minecraft/world/inventory/AbstractContainerMenu menuType Lnet/
 
 accessible field net/minecraft/world/inventory/AnvilMenu itemName Ljava/lang/String;
 accessible field net/minecraft/world/inventory/AnvilMenu cost Lnet/minecraft/world/inventory/DataSlot;
+accessible field net/minecraft/world/inventory/AnvilMenu repairItemCountCost I
 
 accessible field net/minecraft/client/gui/screens/inventory/AnvilScreen player Lnet/minecraft/world/entity/player/Player;
