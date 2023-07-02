@@ -1,10 +1,9 @@
 package info.u_team.enhanced_anvil.block;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import info.u_team.enhanced_anvil.entity.EnhancedAnvilFallingBlockEntity;
 import info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks;
-import info.u_team.enhanced_anvil.init.EnhancedAnvilCreativeTabs;
 import info.u_team.enhanced_anvil.menu.EnhancedAnvilMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -19,15 +18,15 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 
 public class EnhancedAnvilBlock extends UAnvilBlock {
 	
 	private static final Component CONTAINER_TITLE = Component.translatable("container.enhancedanvil.enhanved_anvil");
 	
 	public EnhancedAnvilBlock() {
-		super(EnhancedAnvilCreativeTabs.TAB, Properties.of(Material.HEAVY_METAL, MaterialColor.METAL).strength(5.0F, 1200.0F).sound(SoundType.ANVIL));
+		super(Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(5, 1200).sound(SoundType.ANVIL).pushReaction(PushReaction.BLOCK));
 	}
 	
 	@Override

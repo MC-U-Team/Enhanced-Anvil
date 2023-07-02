@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod(EnhancedAnvilMod.MODID)
 public class EnhancedAnvilMod {
 	
-	public static final String MODID = "enhancedanvil";
+	public static final String MODID = EnhancedAnvilReference.MODID;
 	
 	public EnhancedAnvilMod() {
 		JarSignVerifier.checkSigned(MODID);

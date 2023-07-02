@@ -1,8 +1,8 @@
 package info.u_team.enhanced_anvil.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AnvilScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -15,11 +15,11 @@ public class EnhancedAnvilScreen extends AnvilScreen {
 	}
 	
 	@Override
-	protected void renderLabels(PoseStack poseStack, int x, int y) {
+	protected void renderLabels(GuiGraphics guiGraphics, int x, int y) {
 		RenderSystem.disableBlend();
 		
-		font.draw(poseStack, title, titleLabelX, titleLabelY, 0x404040);
-		font.draw(poseStack, playerInventoryTitle, inventoryLabelX, inventoryLabelY, 0x404040);
+		guiGraphics.drawString(this.font, title, titleLabelX, titleLabelY, 0x404040, false);
+		guiGraphics.drawString(this.font, playerInventoryTitle, inventoryLabelX, inventoryLabelY, 0x404040, false);
 		
 		final int cost = menu.getCost();
 		if (cost > 0) {
@@ -36,10 +36,9 @@ public class EnhancedAnvilScreen extends AnvilScreen {
 			
 			if (text != null) {
 				final int k = imageWidth - 8 - font.width(text) - 2;
-				fill(poseStack, k - 2, 67, imageWidth - 8, 79, 0x4F000000);
-				font.drawShadow(poseStack, text, k, 69, color);
+				guiGraphics.fill(k - 2, 67, imageWidth - 8, 79, 0x4F000000);
+				guiGraphics.drawString(font, text, k, 69, color);
 			}
 		}
-		
 	}
 }

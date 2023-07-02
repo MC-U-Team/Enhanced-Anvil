@@ -1,1 +1,17 @@
 accessWidener v1 named
+
+accessible method net/minecraft/world/entity/item/FallingBlockEntity <init> (Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/level/block/state/BlockState;)V
+
+accessible field net/minecraft/world/entity/item/FallingBlockEntity blockState Lnet/minecraft/world/level/block/state/BlockState;
+accessible field net/minecraft/world/entity/item/FallingBlockEntity cancelDrop Z
+accessible field net/minecraft/world/entity/item/FallingBlockEntity hurtEntities Z
+accessible field net/minecraft/world/entity/item/FallingBlockEntity fallDamageMax I
+accessible field net/minecraft/world/entity/item/FallingBlockEntity fallDamagePerDistance F
+
+accessible field net/minecraft/world/inventory/AbstractContainerMenu menuType Lnet/minecraft/world/inventory/MenuType;
+mutable field net/minecraft/world/inventory/AbstractContainerMenu menuType Lnet/minecraft/world/inventory/MenuType;
+
+accessible field net/minecraft/world/inventory/AnvilMenu itemName Ljava/lang/String;
+accessible field net/minecraft/world/inventory/AnvilMenu cost Lnet/minecraft/world/inventory/DataSlot;
+
+accessible field net/minecraft/client/gui/screens/inventory/AnvilScreen player Lnet/minecraft/world/entity/player/Player;

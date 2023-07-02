@@ -7,6 +7,7 @@ import java.util.function.Consumer;
 import info.u_team.u_team_core.data.CommonRecipeProvider;
 import info.u_team.u_team_core.data.GenerationData;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
@@ -19,7 +20,7 @@ public class EnhancedAnvilRecipeProvider extends CommonRecipeProvider {
 	
 	@Override
 	public void register(Consumer<FinishedRecipe> consumer) {
-		ShapedRecipeBuilder.shaped(ENHANCED_ANVIL.get()) //
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ENHANCED_ANVIL.get()) //
 				.pattern("III") //
 				.pattern(" A ") //
 				.pattern("IBI") //
