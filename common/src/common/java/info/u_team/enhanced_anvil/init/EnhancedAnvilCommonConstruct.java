@@ -10,6 +10,7 @@ public class EnhancedAnvilCommonConstruct implements ModConstruct {
 	@Override
 	public void construct() {
 		EnhancedAnvilBlocks.register();
+		EnhancedAnvilCreativeTabs.register();
 		EnhancedAnvilMenuTypes.register();
 	}
 	
