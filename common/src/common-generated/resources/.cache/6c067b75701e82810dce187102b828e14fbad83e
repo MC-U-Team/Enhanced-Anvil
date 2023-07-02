@@ -1,4 +1,4 @@
-// 1.19.2	2022-11-05T18:39:29.7726514	Loot-Table
-2e8fdc03c9b88be3c505a47c5bd5f35de02c4e4e data/enhancedanvil/loot_tables/blocks/chipped_enhanced_anvil.json
-e817cda9c0995b650477b2b80fcfcbbc65141242 data/enhancedanvil/loot_tables/blocks/damaged_enhanced_anvil.json
-16c4e1000da1ad1a28b4fd78ee6e4db66bc1a558 data/enhancedanvil/loot_tables/blocks/enhanced_anvil.json
+// 1.20.1	2023-07-02T11:44:04.4941258	Loot-Table
+c6b7334f7677b2ac2a3e03f2ca8aabe787f2f023 data/enhancedanvil/loot_tables/blocks/chipped_enhanced_anvil.json
+446bdeb968c72cdea0c8b2778c9e66134602c01e data/enhancedanvil/loot_tables/blocks/damaged_enhanced_anvil.json
+877f1327b3195d0a735664de0bed4a8fdd6b243a data/enhancedanvil/loot_tables/blocks/enhanced_anvil.json
