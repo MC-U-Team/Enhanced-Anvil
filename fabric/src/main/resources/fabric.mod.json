@@ -18,6 +18,9 @@
 	"entrypoints": {
 		"main": [
 			"info.u_team.enhanced_anvil.EnhancedAnvilMod"
+		],
+		"jei_mod_plugin": [
+			"info.u_team.enhanced_anvil.integration.jei.EnhancedAnvilJeiPlugin"
 		]
 	},
 	"accessWidener": "enhancedanvil.accesswidener",

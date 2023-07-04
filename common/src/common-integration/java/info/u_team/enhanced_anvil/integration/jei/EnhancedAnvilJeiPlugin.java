@@ -1,6 +1,6 @@
 package info.u_team.enhanced_anvil.integration.jei;
 
-import info.u_team.enhanced_anvil.EnhancedAnvilMod;
+import info.u_team.enhanced_anvil.EnhancedAnvilReference;
 import info.u_team.enhanced_anvil.init.EnhancedAnvilBlocks;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 @JeiPlugin
 public class EnhancedAnvilJeiPlugin implements IModPlugin {
 	
-	private final ResourceLocation id = new ResourceLocation(EnhancedAnvilMod.MODID, "jei");
+	private final ResourceLocation id = new ResourceLocation(EnhancedAnvilReference.MODID, "jei");
 	
 	@Override
 	public ResourceLocation getPluginUid() {
