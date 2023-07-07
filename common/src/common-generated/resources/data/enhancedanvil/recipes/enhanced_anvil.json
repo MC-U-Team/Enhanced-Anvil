@@ -6,10 +6,10 @@
 			"item": "minecraft:anvil"
 		},
 		"B": {
-			"tag": "forge:storage_blocks/iron"
+			"tag": "enhancedanvil:block/iron"
 		},
 		"I": {
-			"tag": "forge:ingots/iron"
+			"tag": "enhancedanvil:ingot/iron"
 		}
 	},
 	"pattern": [

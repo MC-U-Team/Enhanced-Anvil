@@ -17,7 +17,7 @@
 			"conditions": {
 				"items": [
 					{
-						"tag": "forge:ingots/iron"
+						"tag": "enhancedanvil:ingot/iron"
 					}
 				]
 			},
