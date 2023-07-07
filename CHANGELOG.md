@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.20.1-1.2.0.13] - 2023-07-08
+### Changed
+ - Fix crafting recipe on fabric
+
 ## [1.20.1-1.2.0.12] - 2023-07-05
 ### Changed
  - Enable jei plugin again
